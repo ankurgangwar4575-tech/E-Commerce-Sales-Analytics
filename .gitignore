@@ -1,4 +1,3 @@
-# Python bytecode and tooling
 __pycache__/
 *.py[cod]
 *.pyo
@@ -8,33 +7,29 @@ __pycache__/
 .coverage
 htmlcov/
 
-# Local environments
 .venv/
 venv/
 env/
 ENV/
 
-# Jupyter transient files
 .ipynb_checkpoints/
 
-# Secrets and local configuration
 .env
 .env.*
 !.env.example
 
-# Local source drops and generated ML data
 data/raw/
 data/interim/
 data/processed/
 
-# Trained models, experiment tracking, and generated outputs
-models/
+
+models/*.tmp
+models/*.log
 mlruns/
 wandb/
 outputs/
 reports/figures/
 
-# OS and editor files
 .DS_Store
 Thumbs.db
 .vscode/
