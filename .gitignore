@@ -18,10 +18,6 @@ ENV/
 .env.*
 !.env.example
 
-data/raw/
-data/interim/
-data/processed/
-
 
 models/*.tmp
 models/*.log
