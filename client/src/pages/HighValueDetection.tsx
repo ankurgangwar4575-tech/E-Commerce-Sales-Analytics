@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Gem, Calendar, Target, TrendingUp, AlertCircle, Trophy } from 'lucide-react';
+import { Gem, AlertCircle, Trophy } from 'lucide-react';
 import { API_URL } from '../config';
 
 export const HighValueDetection = () => {
