@@ -1,0 +1,38 @@
+{
+    "features": [
+        "gender",
+        "region",
+        "customer_age",
+        "discount_amount",
+        "gross_sales",
+        "shipping_cost"
+    ],
+    "cat_features": [
+        "gender",
+        "region"
+    ],
+    "label_encoders": {
+        "gender": {
+            "Female": 0,
+            "Male": 1,
+            "Non-Binary": 2
+        },
+        "region": {
+            "Central": 0,
+            "East": 1,
+            "North": 2,
+            "South": 3,
+            "West": 4
+        }
+    },
+    "target_classes": [
+        "Business",
+        "Consumer",
+        "Premium",
+        "VIP"
+    ],
+    "model_type": "LightGBM Classifier",
+    "metrics": {
+        "accuracy": 0.5977772951057052
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "features": [
+        "customer_segment",
+        "shipping_method",
+        "customer_age",
+        "gross_sales",
+        "discount_amount"
+    ],
+    "cat_features": [
+        "customer_segment",
+        "shipping_method"
+    ],
+    "label_encoders": {
+        "customer_segment": {
+            "Business": 0,
+            "Consumer": 1,
+            "Premium": 2,
+            "VIP": 3
+        },
+        "shipping_method": {
+            "Economy": 0,
+            "Express": 1,
+            "Same Day": 2,
+            "Standard": 3
+        }
+    },
+    "target_classes": [
+        "Changed Mind",
+        "Damaged Product",
+        "Defective Product",
+        "Late Delivery",
+        "Other",
+        "Product Not as Expected",
+        "Size Issue",
+        "Wrong Product"
+    ],
+    "model_type": "LightGBM Classifier",
+    "metrics": {
+        "accuracy": 0.1294241944004226
+    }
+}

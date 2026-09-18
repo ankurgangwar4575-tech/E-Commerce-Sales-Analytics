@@ -5,14 +5,22 @@ import {
   RotateCcw, 
   Users, 
   Gem, 
-  TrendingUp, 
-  Star 
+  Star,
+  Target,
+  Truck,
+  HelpCircle,
+  MessageSquare,
+  TrendingUp
 } from 'lucide-react';
 
 const navItems = [
   { path: '/', label: 'Dashboard', icon: LayoutDashboard },
   { path: '/return-prediction', label: 'Return Prediction', icon: RotateCcw },
   { path: '/customer-segmentation', label: 'Customer Segmentation', icon: Users },
+  { path: '/segment-classification', label: 'Segment Classification', icon: Target },
+  { path: '/delivery-delay', label: 'Delivery Delay', icon: Truck },
+  { path: '/return-reason', label: 'Return Reason', icon: HelpCircle },
+  { path: '/review-sentiment', label: 'Review Sentiment', icon: MessageSquare },
   { path: '/high-value-customer', label: 'High-Value Detection', icon: Gem },
   { path: '/sales-forecasting', label: 'Sales Forecasting', icon: TrendingUp },
   { path: '/rating-prediction', label: 'Rating Prediction', icon: Star },

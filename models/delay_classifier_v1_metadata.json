@@ -1,0 +1,66 @@
+{
+    "features": [
+        "shipping_method",
+        "warehouse",
+        "region",
+        "customer_country",
+        "shipping_cost"
+    ],
+    "cat_features": [
+        "shipping_method",
+        "warehouse",
+        "region",
+        "customer_country"
+    ],
+    "label_encoders": {
+        "shipping_method": {
+            "Economy": 0,
+            "Express": 1,
+            "Same Day": 2,
+            "Standard": 3
+        },
+        "warehouse": {
+            "WH-001": 0,
+            "WH-002": 1,
+            "WH-003": 2,
+            "WH-004": 3,
+            "WH-005": 4,
+            "WH-006": 5,
+            "WH-007": 6,
+            "WH-008": 7,
+            "WH-009": 8,
+            "WH-010": 9,
+            "WH-011": 10,
+            "WH-012": 11,
+            "WH-013": 12,
+            "WH-014": 13,
+            "WH-015": 14,
+            "WH-016": 15,
+            "WH-017": 16,
+            "WH-018": 17,
+            "WH-019": 18
+        },
+        "region": {
+            "Central": 0,
+            "East": 1,
+            "North": 2,
+            "South": 3,
+            "West": 4
+        },
+        "customer_country": {
+            "Australia": 0,
+            "Canada": 1,
+            "Germany": 2,
+            "India": 3,
+            "UAE": 4,
+            "UK": 5,
+            "USA": 6
+        }
+    },
+    "model_type": "LightGBM Binary Classifier",
+    "metrics": {
+        "accuracy": 0.5186245156745333,
+        "precision": 0.1479030754892824,
+        "recall": 0.46994373704471426
+    }
+}

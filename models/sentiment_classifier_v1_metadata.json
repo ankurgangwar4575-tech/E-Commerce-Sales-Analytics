@@ -1,0 +1,31 @@
+{
+    "features": [
+        "order_status",
+        "return_status",
+        "delivery_days",
+        "estimated_delivery_days",
+        "discount_amount",
+        "gross_sales"
+    ],
+    "cat_features": [
+        "order_status",
+        "return_status"
+    ],
+    "label_encoders": {
+        "order_status": {
+            "Completed": 0
+        },
+        "return_status": {
+            "Not Returned": 0
+        }
+    },
+    "target_classes": [
+        "Negative",
+        "Neutral",
+        "Positive"
+    ],
+    "model_type": "LightGBM Classifier",
+    "metrics": {
+        "accuracy": 0.6360073969707644
+    }
+}

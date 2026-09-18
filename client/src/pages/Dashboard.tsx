@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  RotateCcw, Users, Gem, TrendingUp, Star, DollarSign,
+  RotateCcw, Users, Gem, TrendingUp, Star, DollarSign, Target, Truck, HelpCircle, MessageSquare,
   DollarSign as RevenueIcon, ShoppingCart, Percent
 } from 'lucide-react';
 import {
@@ -18,6 +18,10 @@ import { API_URL } from '../config';
 const mlFeatures = [
   { path: '/return-prediction', title: 'Return Prediction', desc: 'Predict the exact probability of an order being returned.', icon: RotateCcw, active: true },
   { path: '/customer-segmentation', title: 'Customer Segmentation', desc: 'Use behavioral features to discover customer groups using KMeans.', icon: Users, active: true },
+  { path: '/segment-classification', title: 'Segment Predictor', desc: 'Predict whether a customer is Consumer, Premium, VIP, or Business.', icon: Target, active: true },
+  { path: '/delivery-delay', title: 'Delivery Delay Warning', desc: 'Predict if an order will be delivered later than its estimated delivery date.', icon: Truck, active: true },
+  { path: '/return-reason', title: 'Return Reason Predictor', desc: 'Predict the primary reason a customer might return an order.', icon: HelpCircle, active: true },
+  { path: '/review-sentiment', title: 'Review Sentiment Analyzer', desc: 'Predict the sentiment of a customer\'s review based on their order experience.', icon: MessageSquare, active: true },
   { path: '/high-value-customer', title: 'High-Value Customer Detection', desc: 'Identify customers with higher historical business value.', icon: Gem, active: true },
   { path: '/sales-forecasting', title: 'Sales Forecasting', desc: 'Use historical transaction patterns for time-series and forecasting experiments.', icon: TrendingUp, active: true },
   { path: '/rating-prediction', title: 'Customer Rating Prediction', desc: 'Explore which variables may help explain customer ratings.', icon: Star, active: true },

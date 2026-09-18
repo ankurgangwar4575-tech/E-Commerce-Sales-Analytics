@@ -2,12 +2,16 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from pathlib import Path
-from server.schemas import PredictionRequest, PredictionResponse, SegmentationRequest, SegmentationResponse, HighValueRequest, HighValueResponse, RatingRequest, RatingResponse
+from server.schemas import PredictionRequest, PredictionResponse, SegmentationRequest, SegmentationResponse, HighValueRequest, HighValueResponse, RatingRequest, RatingResponse, SegmentClassifyRequest, SegmentClassifyResponse, DelayRequest, DelayResponse, ReturnReasonRequest, ReturnReasonResponse, SentimentRequest, SentimentResponse
 from server.services.prediction import PredictionService
 from server.services.segmentation import SegmentationService
 from server.services.high_value import HighValueService
 from server.services.rating import RatingService
 from server.services.forecast import ForecastService
+from server.services.segment_classifier import SegmentClassifierService
+from server.services.delay import DelayService
+from server.services.return_reason import ReturnReasonService
+from server.services.sentiment import SentimentService
 
 app = FastAPI(
     title="Return Risk Prediction API",
@@ -52,6 +56,30 @@ try:
 except Exception as e:
     print(f"Warning: Failed to load forecast service on startup. Error: {e}")
     forecast_service = None
+
+try:
+    segment_classifier_service = SegmentClassifierService()
+except Exception as e:
+    print(f"Warning: Failed to load segment classifier service on startup. Error: {e}")
+    segment_classifier_service = None
+
+try:
+    delay_service = DelayService()
+except Exception as e:
+    print(f"Warning: Failed to load delay service on startup. Error: {e}")
+    delay_service = None
+
+try:
+    return_reason_service = ReturnReasonService()
+except Exception as e:
+    print(f"Warning: Failed to load return reason service on startup. Error: {e}")
+    return_reason_service = None
+
+try:
+    sentiment_service = SentimentService()
+except Exception as e:
+    print(f"Warning: Failed to load sentiment service on startup. Error: {e}")
+    sentiment_service = None
 
 @app.get("/")
 def root():
@@ -128,3 +156,44 @@ def get_forecast():
         return forecast_service.get_forecast()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to fetch forecast: {str(e)}")
+
+@app.post("/predict-segment", response_model=SegmentClassifyResponse)
+def predict_segment(request: SegmentClassifyRequest):
+    if segment_classifier_service is None:
+        raise HTTPException(status_code=503, detail="Segment classifier service is not available")
+    
+    try:
+        response = segment_classifier_service.predict(request.model_dump())
+        return response
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Segment classification failed: {str(e)}")
+
+@app.post("/predict-delay", response_model=DelayResponse)
+def predict_delay(request: DelayRequest):
+    if delay_service is None:
+        raise HTTPException(status_code=503, detail="Delay service is not available")
+    
+    try:
+        return delay_service.predict(request.model_dump())
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Delay prediction failed: {str(e)}")
+
+@app.post("/predict-return-reason", response_model=ReturnReasonResponse)
+def predict_return_reason(request: ReturnReasonRequest):
+    if return_reason_service is None:
+        raise HTTPException(status_code=503, detail="Return reason service is not available")
+    
+    try:
+        return return_reason_service.predict(request.model_dump())
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Return reason prediction failed: {str(e)}")
+
+@app.post("/predict-sentiment", response_model=SentimentResponse)
+def predict_sentiment(request: SentimentRequest):
+    if sentiment_service is None:
+        raise HTTPException(status_code=503, detail="Sentiment service is not available")
+    
+    try:
+        return sentiment_service.predict(request.model_dump())
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Sentiment prediction failed: {str(e)}")

@@ -44,3 +44,61 @@ class RatingRequest(BaseModel):
 
 class RatingResponse(BaseModel):
     predicted_rating: float
+
+class SegmentClassifyRequest(BaseModel):
+    gender: str
+    region: str
+    customer_age: int
+    discount_amount: float
+    gross_sales: float
+    shipping_cost: float
+
+class SegmentProb(BaseModel):
+    segment: str
+    probability: float
+
+class SegmentClassifyResponse(BaseModel):
+    predicted_segment: str
+    probabilities: list[SegmentProb]
+
+class DelayRequest(BaseModel):
+    shipping_method: str
+    warehouse: str
+    region: str
+    customer_country: str
+    shipping_cost: float
+
+class DelayResponse(BaseModel):
+    delay_probability: float
+    is_high_risk: bool
+
+class ReturnReasonRequest(BaseModel):
+    customer_segment: str
+    shipping_method: str
+    customer_age: int
+    gross_sales: float
+    discount_amount: float
+
+class ReasonProb(BaseModel):
+    reason: str
+    probability: float
+
+class ReturnReasonResponse(BaseModel):
+    predicted_reason: str
+    probabilities: list[ReasonProb]
+
+class SentimentRequest(BaseModel):
+    order_status: str
+    return_status: str
+    delivery_days: float
+    estimated_delivery_days: float
+    discount_amount: float
+    gross_sales: float
+
+class SentimentProb(BaseModel):
+    sentiment: str
+    probability: float
+
+class SentimentResponse(BaseModel):
+    predicted_sentiment: str
+    probabilities: list[SentimentProb]
