@@ -131,9 +131,9 @@ def create_training_data(
 
     
     customer_columns_to_drop = [
-        column
-        for column in ["order_timestamp"]
-        if column in customer_features_df.columns
+    column
+    for column in ["order_timestamp", "customer_id"]
+    if column in customer_features_df.columns
     ]
 
     customer_features_for_merge_df = customer_features_df.drop(
