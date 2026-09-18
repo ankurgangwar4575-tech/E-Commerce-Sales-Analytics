@@ -26,22 +26,18 @@ class SegmentClassifierService:
     def predict(self, data: dict) -> dict:
         df = pd.DataFrame([data])
         
-        # Apply label encoding using the saved mapping
         for col in self.cat_features:
             val = str(df[col].iloc[0])
             mapping = self.label_encoders[col]
             if val in mapping:
                 df[col] = mapping[val]
             else:
-                # default to 0 if unknown category
                 df[col] = 0
                 
         X = df[self.features]
         
-        # Predict probabilities
         probas = self.model.predict_proba(X)[0]
         
-        # Format results
         results = []
         for i, class_name in enumerate(self.target_classes):
             results.append({
@@ -49,7 +45,6 @@ class SegmentClassifierService:
                 "probability": round(float(probas[i]), 4)
             })
             
-        # Sort by highest probability
         results.sort(key=lambda x: x["probability"], reverse=True)
         
         return {

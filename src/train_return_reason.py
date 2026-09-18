@@ -12,8 +12,6 @@ def train_return_reason():
     data_path = Path("data/ecommerce_sales_customer_analytics_150k.csv")
     df = pd.read_csv(data_path)
     
-    # Filter only for items that were returned (assuming return_status == 'Returned')
-    # Or just drop NaN in return_reason
     df = df.dropna(subset=['return_reason'])
     
     cat_features = ['customer_segment', 'shipping_method']
@@ -23,14 +21,12 @@ def train_return_reason():
     
     df = df.dropna(subset=features + [target])
     
-    # Encode categorical features
     label_encoders = {}
     for col in cat_features:
         le = LabelEncoder()
         df[col] = le.fit_transform(df[col].astype(str))
         label_encoders[col] = {str(cls): int(idx) for idx, cls in enumerate(le.classes_)}
         
-    # Encode target
     target_le = LabelEncoder()
     y = target_le.fit_transform(df[target])
     target_classes = list(target_le.classes_)

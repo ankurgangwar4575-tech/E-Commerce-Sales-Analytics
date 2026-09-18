@@ -12,7 +12,6 @@ def train_delay_model():
     data_path = Path("data/ecommerce_sales_customer_analytics_150k.csv")
     df = pd.read_csv(data_path)
     
-    # Create target: 1 if delivery_days > estimated_delivery_days, else 0
     df = df.dropna(subset=['delivery_days', 'estimated_delivery_days'])
     df['is_delayed'] = (df['delivery_days'] > df['estimated_delivery_days']).astype(int)
     
@@ -23,7 +22,6 @@ def train_delay_model():
     
     df = df.dropna(subset=features + [target])
     
-    # Encode categorical features
     label_encoders = {}
     for col in cat_features:
         le = LabelEncoder()
