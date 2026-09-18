@@ -1,0 +1,18 @@
+{
+    "model_version": "high_value_v1",
+    "model_name": "LightGBM Classifier",
+    "features": [
+        "customer_age",
+        "customer_acquisition_cost",
+        "first_order_value",
+        "first_order_discount",
+        "first_order_quantity",
+        "gender",
+        "first_order_channel"
+    ],
+    "categorical_columns": [
+        "gender",
+        "first_order_channel"
+    ],
+    "ltv_threshold": 10356.31
+}

@@ -1,0 +1,179 @@
+import React, { useState } from 'react';
+import { Users, AlertCircle, Sparkles } from 'lucide-react';
+
+export const CustomerSegmentation = () => {
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<{ cluster_id: number; profile: string } | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const [formData, setFormData] = useState({
+    total_orders: '5',
+    total_spend: '1500.00',
+    return_rate: '0.1',
+    customer_age: '35',
+    customer_acquisition_cost: '20.00'
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setResult(null);
+
+    const payload = {
+      total_orders: parseInt(formData.total_orders),
+      total_spend: parseFloat(formData.total_spend),
+      return_rate: parseFloat(formData.return_rate),
+      customer_age: parseInt(formData.customer_age),
+      customer_acquisition_cost: parseFloat(formData.customer_acquisition_cost)
+    };
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/segment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch segmentation');
+      }
+
+      const data = await response.json();
+      setResult(data);
+    } catch (err: any) {
+      setError(err.message || 'An error occurred');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto space-y-8">
+      <div>
+        <h1 className="text-3xl font-bold mb-2">Customer Segmentation</h1>
+        <p className="text-slate-400">Classify customers using our K-Means clustering model.</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6">
+          <h2 className="text-xl font-semibold mb-6 text-accent-teal">Customer Features</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Total Orders</label>
+              <input 
+                type="number" 
+                name="total_orders"
+                value={formData.total_orders}
+                onChange={handleChange}
+                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Total Lifetime Spend ($)</label>
+              <input 
+                type="number" 
+                name="total_spend"
+                value={formData.total_spend}
+                onChange={handleChange}
+                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Return Rate (0-1)</label>
+              <input 
+                type="number" 
+                step="0.01"
+                name="return_rate"
+                value={formData.return_rate}
+                onChange={handleChange}
+                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Customer Age</label>
+              <input 
+                type="number" 
+                name="customer_age"
+                value={formData.customer_age}
+                onChange={handleChange}
+                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-1">Acquisition Cost ($)</label>
+              <input 
+                type="number" 
+                name="customer_acquisition_cost"
+                value={formData.customer_acquisition_cost}
+                onChange={handleChange}
+                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+              />
+            </div>
+
+            <button 
+              type="submit" 
+              disabled={loading}
+              className="w-full mt-6 bg-accent-teal text-navy-900 font-bold py-3 px-4 rounded-lg hover:bg-[#4ddbb8] transition-colors disabled:opacity-50"
+            >
+              {loading ? 'Clustering...' : 'Segment Customer'}
+            </button>
+          </form>
+        </div>
+
+        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6 flex flex-col justify-center items-center text-center">
+          {!result && !error && !loading && (
+             <div className="text-slate-500">
+               <Users className="w-16 h-16 mx-auto mb-4 opacity-50" />
+               <p>Enter features to determine customer segment</p>
+             </div>
+          )}
+
+          {loading && (
+            <div className="animate-pulse flex flex-col items-center">
+              <div className="w-12 h-12 border-4 border-accent-teal border-t-transparent rounded-full animate-spin mb-4"></div>
+              <p className="text-slate-300">Running K-Means Model...</p>
+            </div>
+          )}
+
+          {error && (
+            <div className="text-red-400 flex flex-col items-center">
+              <AlertCircle className="w-12 h-12 mb-2" />
+              <p>{error}</p>
+            </div>
+          )}
+
+          {result && !loading && (
+            <div className="w-full">
+              <div className="p-6 rounded-xl border bg-accent-teal/10 border-accent-teal/50">
+                <Sparkles className="w-12 h-12 text-accent-teal mx-auto mb-4" />
+                <h3 className="text-2xl font-bold mb-1 text-accent-teal">
+                  Cluster {result.cluster_id}
+                </h3>
+                <p className="text-slate-300 mb-6">Profile Assigned</p>
+                
+                <div className="bg-navy-900 rounded-lg p-4">
+                  <p className="text-sm text-slate-400 mb-1">Customer Profile</p>
+                  <p className="text-xl font-bold text-white">
+                    {result.profile}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};

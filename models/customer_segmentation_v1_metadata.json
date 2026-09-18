@@ -1,0 +1,17 @@
+{
+    "model_version": "customer_segmentation_v1",
+    "model_name": "KMeans",
+    "n_clusters": 3,
+    "features": [
+        "total_orders",
+        "total_spend",
+        "return_rate",
+        "customer_age",
+        "customer_acquisition_cost"
+    ],
+    "cluster_profiles": {
+        "0": "Occasional Shoppers",
+        "1": "High-Value Loyalists",
+        "2": "High-Return/At-Risk Shoppers"
+    }
+}

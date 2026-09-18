@@ -12,7 +12,8 @@ class PredictionService:
     def __init__(self):
         if not MODEL_PATH.exists():
             raise FileNotFoundError(f"Model file not found at {MODEL_PATH}")
-        self.model = joblib.load(MODEL_PATH)
+        loaded_data = joblib.load(MODEL_PATH)
+        self.model = loaded_data['model']
 
         if not METADATA_PATH.exists():
             raise FileNotFoundError(f"Metadata file not found at {METADATA_PATH}")
