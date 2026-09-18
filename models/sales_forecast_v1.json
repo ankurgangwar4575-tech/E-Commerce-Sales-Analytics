@@ -1,0 +1,246 @@
+{
+    "historical": [
+        {
+            "date": "2025-12-02",
+            "actual_sales": 137138.63
+        },
+        {
+            "date": "2025-12-03",
+            "actual_sales": 161062.53
+        },
+        {
+            "date": "2025-12-04",
+            "actual_sales": 115104.86
+        },
+        {
+            "date": "2025-12-05",
+            "actual_sales": 176910.24
+        },
+        {
+            "date": "2025-12-06",
+            "actual_sales": 149783.63
+        },
+        {
+            "date": "2025-12-07",
+            "actual_sales": 127528.94
+        },
+        {
+            "date": "2025-12-08",
+            "actual_sales": 155332.21
+        },
+        {
+            "date": "2025-12-09",
+            "actual_sales": 114610.69
+        },
+        {
+            "date": "2025-12-10",
+            "actual_sales": 179575.16
+        },
+        {
+            "date": "2025-12-11",
+            "actual_sales": 133302.84
+        },
+        {
+            "date": "2025-12-12",
+            "actual_sales": 148204.92
+        },
+        {
+            "date": "2025-12-13",
+            "actual_sales": 160658.12
+        },
+        {
+            "date": "2025-12-14",
+            "actual_sales": 151563.5
+        },
+        {
+            "date": "2025-12-15",
+            "actual_sales": 189502.6
+        },
+        {
+            "date": "2025-12-16",
+            "actual_sales": 130435.86
+        },
+        {
+            "date": "2025-12-17",
+            "actual_sales": 141643.0
+        },
+        {
+            "date": "2025-12-18",
+            "actual_sales": 155239.44
+        },
+        {
+            "date": "2025-12-19",
+            "actual_sales": 137177.37
+        },
+        {
+            "date": "2025-12-20",
+            "actual_sales": 157246.56
+        },
+        {
+            "date": "2025-12-21",
+            "actual_sales": 124242.14
+        },
+        {
+            "date": "2025-12-22",
+            "actual_sales": 159339.2
+        },
+        {
+            "date": "2025-12-23",
+            "actual_sales": 172947.45
+        },
+        {
+            "date": "2025-12-24",
+            "actual_sales": 141897.87
+        },
+        {
+            "date": "2025-12-25",
+            "actual_sales": 152402.24
+        },
+        {
+            "date": "2025-12-26",
+            "actual_sales": 171557.73
+        },
+        {
+            "date": "2025-12-27",
+            "actual_sales": 115296.79
+        },
+        {
+            "date": "2025-12-28",
+            "actual_sales": 145577.79
+        },
+        {
+            "date": "2025-12-29",
+            "actual_sales": 129695.88
+        },
+        {
+            "date": "2025-12-30",
+            "actual_sales": 154444.45
+        },
+        {
+            "date": "2025-12-31",
+            "actual_sales": 126415.5
+        }
+    ],
+    "forecast": [
+        {
+            "date": "2026-01-01",
+            "predicted_sales": 150070.71
+        },
+        {
+            "date": "2026-01-02",
+            "predicted_sales": 147771.54
+        },
+        {
+            "date": "2026-01-03",
+            "predicted_sales": 134969.97
+        },
+        {
+            "date": "2026-01-04",
+            "predicted_sales": 147644.81
+        },
+        {
+            "date": "2026-01-05",
+            "predicted_sales": 150938.19
+        },
+        {
+            "date": "2026-01-06",
+            "predicted_sales": 149917.02
+        },
+        {
+            "date": "2026-01-07",
+            "predicted_sales": 150866.31
+        },
+        {
+            "date": "2026-01-08",
+            "predicted_sales": 153152.87
+        },
+        {
+            "date": "2026-01-09",
+            "predicted_sales": 154120.25
+        },
+        {
+            "date": "2026-01-10",
+            "predicted_sales": 145722.08
+        },
+        {
+            "date": "2026-01-11",
+            "predicted_sales": 144198.87
+        },
+        {
+            "date": "2026-01-12",
+            "predicted_sales": 143938.27
+        },
+        {
+            "date": "2026-01-13",
+            "predicted_sales": 151276.54
+        },
+        {
+            "date": "2026-01-14",
+            "predicted_sales": 156937.42
+        },
+        {
+            "date": "2026-01-15",
+            "predicted_sales": 153463.53
+        },
+        {
+            "date": "2026-01-16",
+            "predicted_sales": 162073.98
+        },
+        {
+            "date": "2026-01-17",
+            "predicted_sales": 146859.16
+        },
+        {
+            "date": "2026-01-18",
+            "predicted_sales": 145798.65
+        },
+        {
+            "date": "2026-01-19",
+            "predicted_sales": 149356.0
+        },
+        {
+            "date": "2026-01-20",
+            "predicted_sales": 156205.26
+        },
+        {
+            "date": "2026-01-21",
+            "predicted_sales": 138553.85
+        },
+        {
+            "date": "2026-01-22",
+            "predicted_sales": 162540.18
+        },
+        {
+            "date": "2026-01-23",
+            "predicted_sales": 142614.41
+        },
+        {
+            "date": "2026-01-24",
+            "predicted_sales": 149264.98
+        },
+        {
+            "date": "2026-01-25",
+            "predicted_sales": 153629.18
+        },
+        {
+            "date": "2026-01-26",
+            "predicted_sales": 144094.22
+        },
+        {
+            "date": "2026-01-27",
+            "predicted_sales": 158689.5
+        },
+        {
+            "date": "2026-01-28",
+            "predicted_sales": 146028.18
+        },
+        {
+            "date": "2026-01-29",
+            "predicted_sales": 145889.83
+        },
+        {
+            "date": "2026-01-30",
+            "predicted_sales": 152771.74
+        }
+    ]
+}

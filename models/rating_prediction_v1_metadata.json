@@ -1,0 +1,16 @@
+{
+    "features": [
+        "delivery_days",
+        "estimated_delivery_days",
+        "is_late",
+        "discount_amount",
+        "shipping_cost",
+        "gross_sales"
+    ],
+    "model_type": "LightGBM Regressor",
+    "description": "Predicts customer rating (1-5) based on order characteristics.",
+    "metrics": {
+        "mse": 0.18738141158538682,
+        "mae": 0.3461476944110737
+    }
+}

@@ -34,3 +34,13 @@ class HighValueRequest(BaseModel):
 class HighValueResponse(BaseModel):
     high_value_probability: float
     is_high_value: bool
+
+class RatingRequest(BaseModel):
+    delivery_days: int
+    estimated_delivery_days: int
+    discount_amount: float
+    shipping_cost: float
+    gross_sales: float
+
+class RatingResponse(BaseModel):
+    predicted_rating: float

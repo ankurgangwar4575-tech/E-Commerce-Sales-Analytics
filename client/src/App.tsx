@@ -5,7 +5,8 @@ import { Dashboard } from './pages/Dashboard';
 import { ReturnPrediction } from './pages/ReturnPrediction';
 import { CustomerSegmentation } from './pages/CustomerSegmentation';
 import { HighValueDetection } from './pages/HighValueDetection';
-import { Placeholder } from './pages/Placeholder';
+import { SalesForecasting } from './pages/SalesForecasting';
+import { RatingPrediction } from './pages/RatingPrediction';
 
 function App() {
   return (
@@ -17,12 +18,8 @@ function App() {
           <Route path="/return-prediction" element={<ReturnPrediction />} />
           <Route path="/customer-segmentation" element={<CustomerSegmentation />} />
           <Route path="/high-value-customer" element={<HighValueDetection />} />
-          <Route path="/churn-risk" element={<Placeholder title="Churn-Risk Analysis" />} />
-          <Route path="/sales-forecasting" element={<Placeholder title="Sales Forecasting" />} />
-          <Route path="/product-demand" element={<Placeholder title="Product Demand Analysis" />} />
-          <Route path="/rating-prediction" element={<Placeholder title="Customer Rating Prediction" />} />
-          <Route path="/profitability" element={<Placeholder title="Profitability Prediction" />} />
-          <Route path="/customer-value" element={<Placeholder title="Customer Value Prediction" />} />
+          <Route path="/sales-forecasting" element={<SalesForecasting />} />
+          <Route path="/rating-prediction" element={<RatingPrediction />} />
         </Routes>
       </main>
     </div>

@@ -5,12 +5,8 @@ import {
   RotateCcw, 
   Users, 
   Gem, 
-  UserMinus, 
   TrendingUp, 
-  Package, 
-  Star, 
-  DollarSign, 
-  Target 
+  Star 
 } from 'lucide-react';
 
 const navItems = [
@@ -18,12 +14,8 @@ const navItems = [
   { path: '/return-prediction', label: 'Return Prediction', icon: RotateCcw },
   { path: '/customer-segmentation', label: 'Customer Segmentation', icon: Users },
   { path: '/high-value-customer', label: 'High-Value Detection', icon: Gem },
-  { path: '/churn-risk', label: 'Churn-Risk Analysis', icon: UserMinus },
   { path: '/sales-forecasting', label: 'Sales Forecasting', icon: TrendingUp },
-  { path: '/product-demand', label: 'Product Demand Analysis', icon: Package },
   { path: '/rating-prediction', label: 'Rating Prediction', icon: Star },
-  { path: '/profitability', label: 'Profitability Prediction', icon: DollarSign },
-  { path: '/customer-value', label: 'Customer Value Prediction', icon: Target },
 ];
 
 export const Sidebar = () => {
