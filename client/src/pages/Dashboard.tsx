@@ -13,6 +13,7 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
+import { API_URL } from '../config';
 
 const mlFeatures = [
   { path: '/return-prediction', title: 'Return Prediction', desc: 'Predict the exact probability of an order being returned.', icon: RotateCcw, active: true },
@@ -37,7 +38,7 @@ export const Dashboard = () => {
   const [stats, setStats] = useState<any>(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/stats')
+    fetch(`${API_URL}/stats`)
       .then(res => res.json())
       .then(data => setStats(data))
       .catch(err => console.error("Failed to load stats:", err));

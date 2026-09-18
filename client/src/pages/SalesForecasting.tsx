@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { TrendingUp, AlertCircle } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { API_URL } from '../config';
 
 export const SalesForecasting = () => {
   const [data, setData] = useState<{ historical: any[], forecast: any[] } | null>(null);
@@ -10,7 +11,7 @@ export const SalesForecasting = () => {
   useEffect(() => {
     const fetchForecast = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/forecast');
+        const response = await fetch(`${API_URL}/forecast`);
         if (!response.ok) throw new Error('Failed to fetch forecast data');
         
         const result = await response.json();

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Users, AlertCircle, Sparkles } from 'lucide-react';
+import { API_URL } from '../config';
 
 export const CustomerSegmentation = () => {
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,7 @@ export const CustomerSegmentation = () => {
     };
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/segment', {
+      const response = await fetch(`${API_URL}/segment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

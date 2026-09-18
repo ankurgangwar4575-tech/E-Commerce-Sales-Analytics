@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AlertCircle, CheckCircle2, RotateCcw } from 'lucide-react';
+import { API_URL } from '../config';
 
 export const ReturnPrediction = () => {
   const [loading, setLoading] = useState(false);
@@ -83,7 +84,7 @@ export const ReturnPrediction = () => {
     };
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/predict', {
+      const response = await fetch(`${API_URL}/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

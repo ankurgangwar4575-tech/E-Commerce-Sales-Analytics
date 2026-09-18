@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Star, Truck, Calendar, DollarSign, Percent } from 'lucide-react';
+import { API_URL } from '../config';
 
 export const RatingPrediction = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ export const RatingPrediction = () => {
     setLoading(true);
     
     try {
-      const response = await fetch('http://127.0.0.1:8000/rating', {
+      const response = await fetch(`${API_URL}/rating`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

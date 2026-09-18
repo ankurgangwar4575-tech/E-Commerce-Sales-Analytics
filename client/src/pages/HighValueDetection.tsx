@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Gem, AlertCircle, Trophy } from 'lucide-react';
+import { Gem, Calendar, Target, TrendingUp, AlertCircle, Trophy } from 'lucide-react';
+import { API_URL } from '../config';
 
 export const HighValueDetection = () => {
   const [loading, setLoading] = useState(false);
@@ -37,7 +38,7 @@ export const HighValueDetection = () => {
     };
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/high-value', {
+      const response = await fetch(`${API_URL}/high-value`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
