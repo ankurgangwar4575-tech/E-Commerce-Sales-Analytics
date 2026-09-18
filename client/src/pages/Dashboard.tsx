@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  RotateCcw, Users, Gem, UserMinus, TrendingUp, Package, Star, DollarSign, Target,
+  RotateCcw, Users, Gem, TrendingUp, Star, DollarSign,
   DollarSign as RevenueIcon, ShoppingCart, Percent
 } from 'lucide-react';
 import {
@@ -15,15 +15,11 @@ import {
 } from 'recharts';
 
 const mlFeatures = [
-  { path: '/return-prediction', title: 'Return Prediction', desc: 'Build models to investigate factors associated with return behavior.', icon: RotateCcw, active: true },
-  { path: '/customer-segmentation', title: 'Customer Segmentation', desc: 'Use behavioral features to discover customer groups.', icon: Users, active: true },
-  { path: '/high-value-customer', title: 'High-Value Customer Detection', desc: 'Identify customers with higher historical business value.', icon: Gem, active: false },
-  { path: '/churn-risk', title: 'Churn-Risk Analysis', desc: 'Develop analytical approaches for identifying potentially disengaged customers.', icon: UserMinus, active: false },
-  { path: '/sales-forecasting', title: 'Sales Forecasting', desc: 'Use historical transaction patterns for time-series and forecasting experiments.', icon: TrendingUp, active: false },
-  { path: '/product-demand', title: 'Product Demand Analysis', desc: 'Study demand patterns across products, categories, brands, and time periods.', icon: Package, active: false },
-  { path: '/rating-prediction', title: 'Customer Rating Prediction', desc: 'Explore which variables may help explain customer ratings.', icon: Star, active: false },
-  { path: '/profitability', title: 'Profitability Prediction', desc: 'Model the relationship between pricing, discounts, products, customers, and profitability.', icon: DollarSign, active: false },
-  { path: '/customer-value', title: 'Customer Value Prediction', desc: 'Use historical customer behavior to estimate future customer value.', icon: Target, active: false },
+  { path: '/return-prediction', title: 'Return Prediction', desc: 'Predict the exact probability of an order being returned.', icon: RotateCcw, active: true },
+  { path: '/customer-segmentation', title: 'Customer Segmentation', desc: 'Use behavioral features to discover customer groups using KMeans.', icon: Users, active: true },
+  { path: '/high-value-customer', title: 'High-Value Customer Detection', desc: 'Identify customers with higher historical business value.', icon: Gem, active: true },
+  { path: '/sales-forecasting', title: 'Sales Forecasting', desc: 'Use historical transaction patterns for time-series and forecasting experiments.', icon: TrendingUp, active: true },
+  { path: '/rating-prediction', title: 'Customer Rating Prediction', desc: 'Explore which variables may help explain customer ratings.', icon: Star, active: true },
 ];
 
 // Mock data for the chart since the backend only provides aggregates right now
