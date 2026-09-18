@@ -1,11 +1,9 @@
 import React from "react";
 
 const App = () => {
-  return (
-    <div>
-      <h1 className="text-3xl font-bold  underline">Ankur Gangwar</h1>
-    </div>
-  );
+  return <div>
+  <div>Ankur Gangwar</div>
+  </div>;
 };
 
 export default App;
