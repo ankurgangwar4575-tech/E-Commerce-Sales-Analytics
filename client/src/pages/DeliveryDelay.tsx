@@ -47,11 +47,11 @@ export const DeliveryDelay = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold text-accent-teal flex items-center gap-2">
+        <h2 className="text-3xl font-bold text-indigo-400 flex items-center gap-2">
           <Truck className="w-8 h-8" />
           Delivery Delay Warning
         </h2>
-        <p className="text-slate-400 mt-2">
+        <p className="text-zinc-400 mt-2">
           Predict if an order will be delivered later than its estimated delivery date.
         </p>
       </div>
@@ -63,10 +63,10 @@ export const DeliveryDelay = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Shipping Method</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Shipping Method</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Truck className="h-5 w-5 text-slate-500" />
+                    <Truck className="h-5 w-5 text-zinc-500" />
                   </div>
                   <select
                     name="shipping_method"
@@ -82,10 +82,10 @@ export const DeliveryDelay = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Warehouse</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Warehouse</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Package className="h-5 w-5 text-slate-500" />
+                    <Package className="h-5 w-5 text-zinc-500" />
                   </div>
                   <select
                     name="warehouse"
@@ -101,10 +101,10 @@ export const DeliveryDelay = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Region</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Region</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <MapPin className="h-5 w-5 text-slate-500" />
+                    <MapPin className="h-5 w-5 text-zinc-500" />
                   </div>
                   <select
                     name="region"
@@ -121,10 +121,10 @@ export const DeliveryDelay = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Destination Country</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Destination Country</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <MapPin className="h-5 w-5 text-slate-500" />
+                    <MapPin className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="text"
@@ -138,10 +138,10 @@ export const DeliveryDelay = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Shipping Cost ($)</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Shipping Cost ($)</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <DollarSign className="h-5 w-5 text-slate-500" />
+                    <DollarSign className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -183,7 +183,7 @@ export const DeliveryDelay = () => {
                       stroke="currentColor"
                       strokeWidth="8"
                       fill="transparent"
-                      className="text-navy-700"
+                      className="text-zinc-800"
                     />
                     <circle
                       cx="64"
@@ -207,7 +207,7 @@ export const DeliveryDelay = () => {
                 <h3 className="text-xl font-semibold mb-2 text-white">
                   {result.is_high_risk ? 'High Risk of Delay' : 'On-Time Expected'}
                 </h3>
-                <p className="text-slate-400">
+                <p className="text-zinc-400">
                   {result.is_high_risk 
                     ? "This order is likely to arrive later than the estimated delivery date. Consider expediting."
                     : "This order is expected to arrive on time based on historical logistics."}
@@ -223,7 +223,7 @@ export const DeliveryDelay = () => {
                 </div>
               </div>
             ) : (
-              <div className="text-center text-slate-500">
+              <div className="text-center text-zinc-500">
                 <Truck className="w-16 h-16 mx-auto mb-4 opacity-20" />
                 <p>Enter logistics details to predict</p>
                 <p>the risk of a delivery delay.</p>

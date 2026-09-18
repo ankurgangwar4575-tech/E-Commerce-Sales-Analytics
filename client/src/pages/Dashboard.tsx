@@ -49,83 +49,89 @@ export const Dashboard = () => {
   }, []);
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold mb-2">Dashboard Overview</h1>
-        <p className="text-slate-400">High-level metrics and Machine Learning opportunities.</p>
+    <div className="space-y-8 animate-in fade-in duration-500">
+      <div className="relative">
+        <div className="absolute -top-10 -left-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <h1 className="text-4xl font-bold mb-2 tracking-tight">Dashboard Overview</h1>
+        <p className="text-zinc-400">High-level metrics and Machine Learning opportunities.</p>
       </div>
 
       {/* Stats Row */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-accent-teal/20 text-accent-teal rounded-lg">
-              <RevenueIcon className="w-6 h-6" />
+        <div className="card !p-5 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div className="flex items-center gap-4 relative">
+            <div className="p-3 bg-indigo-500/10 text-indigo-400 rounded-xl">
+              <RevenueIcon className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-sm text-slate-400">Total Revenue</p>
-              <p className="text-2xl font-bold">{stats ? stats['Total Revenue'] : '...'}</p>
+              <p className="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-1">Total Revenue</p>
+              <p className="text-2xl font-semibold tracking-tight text-zinc-100">{stats ? stats['Total Revenue'] : '...'}</p>
             </div>
           </div>
         </div>
-        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-emerald-500/20 text-emerald-400 rounded-lg">
-              <DollarSign className="w-6 h-6" />
+        <div className="card !p-5 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div className="flex items-center gap-4 relative">
+            <div className="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl">
+              <DollarSign className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-sm text-slate-400">Total Profit</p>
-              <p className="text-2xl font-bold">{stats ? stats['Total Profit'] : '...'}</p>
+              <p className="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-1">Total Profit</p>
+              <p className="text-2xl font-semibold tracking-tight text-zinc-100">{stats ? stats['Total Profit'] : '...'}</p>
             </div>
           </div>
         </div>
-        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-blue-500/20 text-blue-400 rounded-lg">
-              <ShoppingCart className="w-6 h-6" />
+        <div className="card !p-5 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div className="flex items-center gap-4 relative">
+            <div className="p-3 bg-blue-500/10 text-blue-400 rounded-xl">
+              <ShoppingCart className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-sm text-slate-400">Transactions</p>
-              <p className="text-2xl font-bold">{stats ? stats['Total Transactions'] : '...'}</p>
+              <p className="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-1">Transactions</p>
+              <p className="text-2xl font-semibold tracking-tight text-zinc-100">{stats ? stats['Total Transactions'] : '...'}</p>
             </div>
           </div>
         </div>
-        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-red-500/20 text-red-400 rounded-lg">
-              <Percent className="w-6 h-6" />
+        <div className="card !p-5 relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-rose-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div className="flex items-center gap-4 relative">
+            <div className="p-3 bg-rose-500/10 text-rose-400 rounded-xl">
+              <Percent className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-sm text-slate-400">Return Rate</p>
-              <p className="text-2xl font-bold">{stats ? stats['Return Rate'] : '...'}</p>
+              <p className="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-1">Return Rate</p>
+              <p className="text-2xl font-semibold tracking-tight text-zinc-100">{stats ? stats['Return Rate'] : '...'}</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Chart Row */}
-      <div className="bg-navy-800 border border-navy-700 rounded-xl p-6">
-        <h3 className="text-lg font-semibold mb-6">Revenue vs Returns (YTD)</h3>
+      <div className="card">
+        <h3 className="text-lg font-semibold mb-6 text-zinc-100">Revenue vs Returns (YTD)</h3>
         <div className="h-72 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={revenueData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#233554" />
-              <XAxis dataKey="name" stroke="#94a3b8" />
-              <YAxis stroke="#94a3b8" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+              <XAxis dataKey="name" stroke="#71717a" tickLine={false} axisLine={false} />
+              <YAxis stroke="#71717a" tickLine={false} axisLine={false} />
               <Tooltip 
-                contentStyle={{ backgroundColor: '#112240', borderColor: '#233554', color: '#f8fafc' }}
-                itemStyle={{ color: '#f8fafc' }}
+                contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', color: '#f4f4f5', borderRadius: '12px', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.5)' }}
+                itemStyle={{ color: '#f4f4f5' }}
+                cursor={{ fill: '#27272a', opacity: 0.4 }}
               />
-              <Bar dataKey="revenue" name="Revenue" fill="#0070f3" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="returns" name="Returns" fill="#ef4444" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="revenue" name="Revenue" fill="#6366f1" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="returns" name="Returns" fill="#f43f5e" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
       {/* ML Features Grid */}
-      <div>
-        <h2 className="text-2xl font-bold mb-6 mt-4">Predictive Analytics Modules</h2>
+      <div className="pt-4">
+        <h2 className="text-2xl font-bold mb-6 tracking-tight">Predictive Analytics Modules</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mlFeatures.map((feature, idx) => {
             const Icon = feature.icon;
@@ -133,17 +139,18 @@ export const Dashboard = () => {
               <Link 
                 key={idx} 
                 to={feature.path}
-                className="bg-navy-800 border border-navy-700 rounded-xl p-6 hover:border-accent-teal hover:shadow-lg hover:shadow-accent-teal/10 transition-all group flex flex-col h-full"
+                className="card group flex flex-col h-full hover:border-indigo-500/50 hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.15)] relative overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`p-3 rounded-lg ${feature.active ? 'bg-accent-teal/20 text-accent-teal' : 'bg-navy-700 text-slate-300'}`}>
-                    <Icon className="w-6 h-6" />
+                <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="flex items-center gap-4 mb-4 relative">
+                  <div className={`p-3 rounded-xl transition-colors duration-300 ${feature.active ? 'bg-zinc-800 text-indigo-400 group-hover:bg-indigo-500/20 group-hover:text-indigo-300' : 'bg-zinc-900/50 text-zinc-600'}`}>
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-semibold text-lg group-hover:text-accent-teal transition-colors">{feature.title}</h3>
+                  <h3 className="font-semibold text-lg text-zinc-200 group-hover:text-indigo-300 transition-colors">{feature.title}</h3>
                 </div>
-                <p className="text-slate-400 text-sm flex-1">{feature.desc}</p>
+                <p className="text-zinc-500 text-sm flex-1 leading-relaxed relative">{feature.desc}</p>
                 {!feature.active && (
-                  <div className="mt-4 inline-block px-3 py-1 bg-navy-700 text-xs rounded-full text-slate-300 self-start">
+                  <div className="mt-4 inline-block px-3 py-1 bg-zinc-800/50 text-xs rounded-full text-zinc-500 self-start border border-zinc-800 relative">
                     Coming Soon
                   </div>
                 )}

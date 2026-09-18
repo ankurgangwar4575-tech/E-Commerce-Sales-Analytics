@@ -109,22 +109,22 @@ export const ReturnPrediction = () => {
     <div className="max-w-4xl mx-auto space-y-8">
       <div>
         <h1 className="text-3xl font-bold mb-2">Return Prediction</h1>
-        <p className="text-slate-400">Score an order at placement to determine return likelihood.</p>
+        <p className="text-zinc-400">Score an order at placement to determine return likelihood.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Form Card */}
-        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6">
-          <h2 className="text-xl font-semibold mb-6 text-accent-teal">Order Details</h2>
+        <div className="card">
+          <h2 className="text-xl font-semibold mb-6 text-indigo-400">Order Details</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Customer Segment</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-1">Customer Segment</label>
               <select 
                 name="customer_segment" 
                 value={formData.customer_segment}
                 onChange={handleChange}
-                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                className="input-field"
               >
                 <option value="New">New</option>
                 <option value="Loyal">Loyal</option>
@@ -133,43 +133,43 @@ export const ReturnPrediction = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Order Amount ($)</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-1">Order Amount ($)</label>
               <input 
                 type="number" 
                 name="order_amount"
                 value={formData.order_amount}
                 onChange={handleChange}
-                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                className="input-field"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Prior Return Rate (0-1)</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-1">Prior Return Rate (0-1)</label>
               <input 
                 type="number" 
                 step="0.01"
                 name="prior_return_rate"
                 value={formData.prior_return_rate}
                 onChange={handleChange}
-                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                className="input-field"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Days Since Last Order</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-1">Days Since Last Order</label>
               <input 
                 type="number" 
                 name="days_since_previous_order"
                 value={formData.days_since_previous_order}
                 onChange={handleChange}
-                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                className="input-field"
               />
             </div>
 
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full mt-6 bg-accent-teal text-navy-900 font-bold py-3 px-4 rounded-lg hover:bg-[#4ddbb8] transition-colors disabled:opacity-50"
+              className="w-full mt-6 btn-primary py-3"
             >
               {loading ? 'Analyzing Risk...' : 'Predict Return Risk'}
             </button>
@@ -177,9 +177,9 @@ export const ReturnPrediction = () => {
         </div>
 
         {/* Results Card */}
-        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6 flex flex-col justify-center items-center text-center">
+        <div className="card flex flex-col justify-center items-center text-center">
           {!result && !error && !loading && (
-             <div className="text-slate-500">
+             <div className="text-zinc-500">
                <RotateCcw className="w-16 h-16 mx-auto mb-4 opacity-50" />
                <p>Enter order details to see prediction</p>
              </div>
@@ -188,7 +188,7 @@ export const ReturnPrediction = () => {
           {loading && (
             <div className="animate-pulse flex flex-col items-center">
               <div className="w-12 h-12 border-4 border-accent-teal border-t-transparent rounded-full animate-spin mb-4"></div>
-              <p className="text-slate-300">Running LightGBM Model...</p>
+              <p className="text-zinc-300">Running LightGBM Model...</p>
             </div>
           )}
 
@@ -211,10 +211,10 @@ export const ReturnPrediction = () => {
                 <h3 className="text-2xl font-bold mb-1">
                   {result.is_high_risk ? 'High Risk' : 'Low Risk'}
                 </h3>
-                <p className="text-slate-300 mb-6">of order being returned</p>
+                <p className="text-zinc-300 mb-6">of order being returned</p>
                 
-                <div className="bg-navy-900 rounded-lg p-4">
-                  <p className="text-sm text-slate-400 mb-1">Risk Probability Score</p>
+                <div className="bg-zinc-950/50 rounded-lg p-4">
+                  <p className="text-sm text-zinc-400 mb-1">Risk Probability Score</p>
                   <p className="text-3xl font-mono font-bold text-white">
                     {(result.risk_score * 100).toFixed(1)}%
                   </p>

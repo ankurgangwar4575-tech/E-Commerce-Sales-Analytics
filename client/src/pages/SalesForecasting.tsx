@@ -72,18 +72,18 @@ export const SalesForecasting = () => {
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
       <div>
-        <h2 className="text-3xl font-bold text-accent-teal flex items-center gap-2">
+        <h2 className="text-3xl font-bold text-indigo-400 flex items-center gap-2">
           <TrendingUp className="w-8 h-8" />
           Sales Forecasting (30 Days)
         </h2>
-        <p className="text-slate-400 mt-2">
+        <p className="text-zinc-400 mt-2">
           AI-powered time-series projection of daily revenue based on historical patterns.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="card bg-gradient-to-br from-navy-800 to-navy-900 border-accent-teal/20">
-          <h3 className="text-slate-400 text-sm font-medium">Next 30 Days Projected Revenue</h3>
+        <div className="card bg-gradient-to-br from-zinc-900/50 to-zinc-950/50 border-indigo-400/20">
+          <h3 className="text-zinc-400 text-sm font-medium">Next 30 Days Projected Revenue</h3>
           <div className="text-3xl font-bold text-white mt-2">
             ${totalProjected.toLocaleString(undefined, { maximumFractionDigits: 0 })}
           </div>

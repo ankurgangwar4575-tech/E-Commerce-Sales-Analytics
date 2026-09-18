@@ -63,32 +63,32 @@ export const HighValueDetection = () => {
     <div className="max-w-4xl mx-auto space-y-8">
       <div>
         <h1 className="text-3xl font-bold mb-2">High-Value Customer Detection</h1>
-        <p className="text-slate-400">Predict if a customer will become a top-tier spender based on their first order.</p>
+        <p className="text-zinc-400">Predict if a customer will become a top-tier spender based on their first order.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6">
-          <h2 className="text-xl font-semibold mb-6 text-accent-teal">New Customer Data</h2>
+        <div className="card">
+          <h2 className="text-xl font-semibold mb-6 text-indigo-400">New Customer Data</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Age</label>
+                <label className="block text-sm font-medium text-zinc-300 mb-1">Age</label>
                 <input 
                   type="number" 
                   name="customer_age"
                   value={formData.customer_age}
                   onChange={handleChange}
-                  className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                  className="input-field"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-1">Gender</label>
+                <label className="block text-sm font-medium text-zinc-300 mb-1">Gender</label>
                 <select 
                   name="gender"
                   value={formData.gender}
                   onChange={handleChange}
-                  className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                  className="input-field"
                 >
                   <option value="M">Male</option>
                   <option value="F">Female</option>
@@ -98,64 +98,64 @@ export const HighValueDetection = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Acquisition Cost ($)</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-1">Acquisition Cost ($)</label>
               <input 
                 type="number" 
                 step="0.01"
                 name="customer_acquisition_cost"
                 value={formData.customer_acquisition_cost}
                 onChange={handleChange}
-                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                className="input-field"
               />
             </div>
 
-            <div className="pt-4 border-t border-navy-700">
-              <h3 className="text-sm font-bold text-slate-400 mb-4 uppercase">First Order Details</h3>
+            <div className="pt-4 border-t border-zinc-800">
+              <h3 className="text-sm font-bold text-zinc-400 mb-4 uppercase">First Order Details</h3>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Order Value ($)</label>
+                  <label className="block text-sm font-medium text-zinc-300 mb-1">Order Value ($)</label>
                   <input 
                     type="number" 
                     step="0.01"
                     name="first_order_value"
                     value={formData.first_order_value}
                     onChange={handleChange}
-                    className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                    className="input-field"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1">Discount Given ($)</label>
+                    <label className="block text-sm font-medium text-zinc-300 mb-1">Discount Given ($)</label>
                     <input 
                       type="number" 
                       step="0.01"
                       name="first_order_discount"
                       value={formData.first_order_discount}
                       onChange={handleChange}
-                      className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                      className="input-field"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-300 mb-1">Total Quantity</label>
+                    <label className="block text-sm font-medium text-zinc-300 mb-1">Total Quantity</label>
                     <input 
                       type="number" 
                       name="first_order_quantity"
                       value={formData.first_order_quantity}
                       onChange={handleChange}
-                      className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                      className="input-field"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-1">Sales Channel</label>
+                  <label className="block text-sm font-medium text-zinc-300 mb-1">Sales Channel</label>
                   <select 
                     name="first_order_channel"
                     value={formData.first_order_channel}
                     onChange={handleChange}
-                    className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                    className="input-field"
                   >
                     <option value="Online">Online</option>
                     <option value="In-Store">In-Store</option>
@@ -168,16 +168,16 @@ export const HighValueDetection = () => {
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full mt-6 bg-accent-teal text-navy-900 font-bold py-3 px-4 rounded-lg hover:bg-[#4ddbb8] transition-colors disabled:opacity-50"
+              className="w-full mt-6 btn-primary py-3"
             >
               {loading ? 'Analyzing...' : 'Predict VIP Status'}
             </button>
           </form>
         </div>
 
-        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6 flex flex-col justify-center items-center text-center">
+        <div className="card flex flex-col justify-center items-center text-center">
           {!result && !error && !loading && (
-             <div className="text-slate-500">
+             <div className="text-zinc-500">
                <Gem className="w-16 h-16 mx-auto mb-4 opacity-50" />
                <p>Enter first-order features to predict LTV potential</p>
              </div>
@@ -186,7 +186,7 @@ export const HighValueDetection = () => {
           {loading && (
             <div className="animate-pulse flex flex-col items-center">
               <div className="w-12 h-12 border-4 border-accent-teal border-t-transparent rounded-full animate-spin mb-4"></div>
-              <p className="text-slate-300">Running LightGBM Model...</p>
+              <p className="text-zinc-300">Running LightGBM Model...</p>
             </div>
           )}
 
@@ -203,23 +203,23 @@ export const HighValueDetection = () => {
                 {result.is_high_value ? (
                   <Trophy className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
                 ) : (
-                  <Gem className="w-16 h-16 text-slate-400 mx-auto mb-4" />
+                  <Gem className="w-16 h-16 text-zinc-400 mx-auto mb-4" />
                 )}
                 
-                <h3 className={`text-2xl font-bold mb-1 ${result.is_high_value ? 'text-yellow-500' : 'text-slate-300'}`}>
+                <h3 className={`text-2xl font-bold mb-1 ${result.is_high_value ? 'text-yellow-500' : 'text-zinc-300'}`}>
                   {result.is_high_value ? 'Likely VIP' : 'Standard LTV'}
                 </h3>
-                <p className="text-slate-400">Prediction Result</p>
+                <p className="text-zinc-400">Prediction Result</p>
               </div>
 
-              <div className="bg-navy-900 rounded-xl p-6">
+              <div className="bg-zinc-950/50 rounded-xl p-6">
                 <div className="flex justify-between items-end mb-2">
-                  <span className="text-sm text-slate-400">Probability Score</span>
-                  <span className="text-xl font-bold text-accent-teal">
+                  <span className="text-sm text-zinc-400">Probability Score</span>
+                  <span className="text-xl font-bold text-indigo-400">
                     {(result.high_value_probability * 100).toFixed(1)}%
                   </span>
                 </div>
-                <div className="w-full bg-navy-800 rounded-full h-3">
+                <div className="w-full bg-zinc-900/50 rounded-full h-3">
                   <div 
                     className="bg-accent-teal h-3 rounded-full transition-all duration-1000" 
                     style={{ width: `${result.high_value_probability * 100}%` }}

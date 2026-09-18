@@ -72,11 +72,11 @@ export const ReviewSentiment = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold text-accent-teal flex items-center gap-2">
+        <h2 className="text-3xl font-bold text-indigo-400 flex items-center gap-2">
           <MessageSquare className="w-8 h-8" />
           Review Sentiment Analyzer
         </h2>
-        <p className="text-slate-400 mt-2">
+        <p className="text-zinc-400 mt-2">
           Predict the sentiment of a customer's review based on their order experience.
         </p>
       </div>
@@ -88,10 +88,10 @@ export const ReviewSentiment = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Order Status</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Order Status</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Package className="h-5 w-5 text-slate-500" />
+                    <Package className="h-5 w-5 text-zinc-500" />
                   </div>
                   <select
                     name="order_status"
@@ -108,10 +108,10 @@ export const ReviewSentiment = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Return Status</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Return Status</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <RotateCcw className="h-5 w-5 text-slate-500" />
+                    <RotateCcw className="h-5 w-5 text-zinc-500" />
                   </div>
                   <select
                     name="return_status"
@@ -127,10 +127,10 @@ export const ReviewSentiment = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Actual Delivery Days</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Actual Delivery Days</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Clock className="h-5 w-5 text-slate-500" />
+                    <Clock className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -144,10 +144,10 @@ export const ReviewSentiment = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Estimated Delivery Days</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Estimated Delivery Days</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Clock className="h-5 w-5 text-slate-500" />
+                    <Clock className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -161,10 +161,10 @@ export const ReviewSentiment = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Discount Amount ($)</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Discount Amount ($)</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Percent className="h-5 w-5 text-slate-500" />
+                    <Percent className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -178,10 +178,10 @@ export const ReviewSentiment = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Gross Sales ($)</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Gross Sales ($)</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <DollarSign className="h-5 w-5 text-slate-500" />
+                    <DollarSign className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -218,7 +218,7 @@ export const ReviewSentiment = () => {
                   <div className={`mb-4 ${getSentimentColor(result.predicted_sentiment)}`}>
                     {getSentimentIcon(result.predicted_sentiment, "w-24 h-24")}
                   </div>
-                  <h3 className="text-xl font-medium text-slate-400 mb-2">Predicted Sentiment</h3>
+                  <h3 className="text-xl font-medium text-zinc-400 mb-2">Predicted Sentiment</h3>
                   <div className={`text-3xl font-bold tracking-tight ${getSentimentColor(result.predicted_sentiment)}`}>
                     {result.predicted_sentiment}
                   </div>
@@ -228,13 +228,13 @@ export const ReviewSentiment = () => {
                   {result.probabilities.map((prob, idx) => (
                     <div key={idx} className="relative">
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-slate-300 font-medium truncate pr-4 flex items-center gap-2">
+                        <span className="text-zinc-300 font-medium truncate pr-4 flex items-center gap-2">
                           {getSentimentIcon(prob.sentiment, "w-4 h-4")}
                           {prob.sentiment}
                         </span>
-                        <span className="text-slate-400">{(prob.probability * 100).toFixed(1)}%</span>
+                        <span className="text-zinc-400">{(prob.probability * 100).toFixed(1)}%</span>
                       </div>
-                      <div className="h-2 bg-navy-900 rounded-full overflow-hidden">
+                      <div className="h-2 bg-zinc-950/50 rounded-full overflow-hidden">
                         <div 
                           className={`h-full rounded-full transition-all duration-1000 ${getSentimentBg(prob.sentiment)} opacity-80`}
                           style={{ width: `${prob.probability * 100}%` }}
@@ -245,7 +245,7 @@ export const ReviewSentiment = () => {
                 </div>
               </div>
             ) : (
-              <div className="text-center text-slate-500">
+              <div className="text-center text-zinc-500">
                 <MessageSquare className="w-16 h-16 mx-auto mb-4 opacity-20" />
                 <p>Enter order details to predict</p>
                 <p>the customer's review sentiment.</p>

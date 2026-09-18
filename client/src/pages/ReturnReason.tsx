@@ -47,11 +47,11 @@ export const ReturnReason = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold text-accent-teal flex items-center gap-2">
+        <h2 className="text-3xl font-bold text-indigo-400 flex items-center gap-2">
           <HelpCircle className="w-8 h-8" />
           Return Reason Predictor
         </h2>
-        <p className="text-slate-400 mt-2">
+        <p className="text-zinc-400 mt-2">
           Predict the primary reason a customer might return an order.
         </p>
       </div>
@@ -63,10 +63,10 @@ export const ReturnReason = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Customer Segment</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Customer Segment</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Users className="h-5 w-5 text-slate-500" />
+                    <Users className="h-5 w-5 text-zinc-500" />
                   </div>
                   <select
                     name="customer_segment"
@@ -83,10 +83,10 @@ export const ReturnReason = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Shipping Method</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Shipping Method</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Truck className="h-5 w-5 text-slate-500" />
+                    <Truck className="h-5 w-5 text-zinc-500" />
                   </div>
                   <select
                     name="shipping_method"
@@ -102,10 +102,10 @@ export const ReturnReason = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Customer Age</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Customer Age</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Users className="h-5 w-5 text-slate-500" />
+                    <Users className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -119,10 +119,10 @@ export const ReturnReason = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Gross Sales ($)</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Gross Sales ($)</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <DollarSign className="h-5 w-5 text-slate-500" />
+                    <DollarSign className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -136,10 +136,10 @@ export const ReturnReason = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Discount Amount ($)</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Discount Amount ($)</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Percent className="h-5 w-5 text-slate-500" />
+                    <Percent className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -173,7 +173,7 @@ export const ReturnReason = () => {
             {result ? (
               <div className="w-full animate-in fade-in zoom-in duration-300">
                 <div className="text-center mb-6">
-                  <h3 className="text-xl font-medium text-slate-400 mb-2">Most Likely Reason</h3>
+                  <h3 className="text-xl font-medium text-zinc-400 mb-2">Most Likely Reason</h3>
                   <div className="text-3xl font-bold text-white tracking-tight">
                     {result.predicted_reason}
                   </div>
@@ -183,10 +183,10 @@ export const ReturnReason = () => {
                   {result.probabilities.slice(0, 5).map((prob, idx) => (
                     <div key={idx} className="relative">
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-slate-300 font-medium truncate pr-4">{prob.reason}</span>
-                        <span className="text-slate-400">{(prob.probability * 100).toFixed(1)}%</span>
+                        <span className="text-zinc-300 font-medium truncate pr-4">{prob.reason}</span>
+                        <span className="text-zinc-400">{(prob.probability * 100).toFixed(1)}%</span>
                       </div>
-                      <div className="h-2 bg-navy-900 rounded-full overflow-hidden">
+                      <div className="h-2 bg-zinc-950/50 rounded-full overflow-hidden">
                         <div 
                           className={`h-full rounded-full transition-all duration-1000 ${idx === 0 ? 'bg-red-500' : 'bg-slate-600'}`}
                           style={{ width: `${prob.probability * 100}%` }}
@@ -197,7 +197,7 @@ export const ReturnReason = () => {
                 </div>
               </div>
             ) : (
-              <div className="text-center text-slate-500">
+              <div className="text-center text-zinc-500">
                 <HelpCircle className="w-16 h-16 mx-auto mb-4 opacity-20" />
                 <p>Enter order details to predict</p>
                 <p>the reason it might be returned.</p>

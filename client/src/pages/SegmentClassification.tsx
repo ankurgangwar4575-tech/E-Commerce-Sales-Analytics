@@ -48,11 +48,11 @@ export const SegmentClassification = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-3xl font-bold text-accent-teal flex items-center gap-2">
+        <h2 className="text-3xl font-bold text-indigo-400 flex items-center gap-2">
           <Target className="w-8 h-8" />
           Customer Segment Predictor
         </h2>
-        <p className="text-slate-400 mt-2">
+        <p className="text-zinc-400 mt-2">
           Classify a customer into Consumer, Premium, VIP, or Business based on their demographics.
         </p>
       </div>
@@ -64,10 +64,10 @@ export const SegmentClassification = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Gender</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Gender</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Users className="h-5 w-5 text-slate-500" />
+                    <Users className="h-5 w-5 text-zinc-500" />
                   </div>
                   <select
                     name="gender"
@@ -83,10 +83,10 @@ export const SegmentClassification = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Region</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Region</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <MapPin className="h-5 w-5 text-slate-500" />
+                    <MapPin className="h-5 w-5 text-zinc-500" />
                   </div>
                   <select
                     name="region"
@@ -103,10 +103,10 @@ export const SegmentClassification = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Age</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Age</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Users className="h-5 w-5 text-slate-500" />
+                    <Users className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -120,10 +120,10 @@ export const SegmentClassification = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Gross Sales ($)</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Gross Sales ($)</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <DollarSign className="h-5 w-5 text-slate-500" />
+                    <DollarSign className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -137,10 +137,10 @@ export const SegmentClassification = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Discount Amount ($)</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Discount Amount ($)</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Percent className="h-5 w-5 text-slate-500" />
+                    <Percent className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -154,10 +154,10 @@ export const SegmentClassification = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-400 mb-1">Shipping Cost ($)</label>
+                <label className="block text-sm font-medium text-zinc-400 mb-1">Shipping Cost ($)</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <DollarSign className="h-5 w-5 text-slate-500" />
+                    <DollarSign className="h-5 w-5 text-zinc-500" />
                   </div>
                   <input
                     type="number"
@@ -191,7 +191,7 @@ export const SegmentClassification = () => {
             {result ? (
               <div className="w-full animate-in fade-in zoom-in duration-300">
                 <div className="text-center mb-6">
-                  <h3 className="text-xl font-medium text-slate-400 mb-2">Predicted Segment</h3>
+                  <h3 className="text-xl font-medium text-zinc-400 mb-2">Predicted Segment</h3>
                   <div className="text-5xl font-bold text-white tracking-tight">
                     {result.predicted_segment}
                   </div>
@@ -201,10 +201,10 @@ export const SegmentClassification = () => {
                   {result.probabilities.map((prob, idx) => (
                     <div key={idx} className="relative">
                       <div className="flex justify-between text-sm mb-1">
-                        <span className="text-slate-300 font-medium">{prob.segment}</span>
-                        <span className="text-slate-400">{(prob.probability * 100).toFixed(1)}%</span>
+                        <span className="text-zinc-300 font-medium">{prob.segment}</span>
+                        <span className="text-zinc-400">{(prob.probability * 100).toFixed(1)}%</span>
                       </div>
-                      <div className="h-2 bg-navy-900 rounded-full overflow-hidden">
+                      <div className="h-2 bg-zinc-950/50 rounded-full overflow-hidden">
                         <div 
                           className={`h-full rounded-full transition-all duration-1000 ${idx === 0 ? 'bg-accent-teal' : 'bg-slate-600'}`}
                           style={{ width: `${prob.probability * 100}%` }}
@@ -215,7 +215,7 @@ export const SegmentClassification = () => {
                 </div>
               </div>
             ) : (
-              <div className="text-center text-slate-500">
+              <div className="text-center text-zinc-500">
                 <Target className="w-16 h-16 mx-auto mb-4 opacity-20" />
                 <p>Enter customer details to predict</p>
                 <p>their primary business segment.</p>

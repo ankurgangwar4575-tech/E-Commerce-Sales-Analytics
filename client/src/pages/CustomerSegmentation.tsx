@@ -59,83 +59,83 @@ export const CustomerSegmentation = () => {
     <div className="max-w-4xl mx-auto space-y-8">
       <div>
         <h1 className="text-3xl font-bold mb-2">Customer Segmentation</h1>
-        <p className="text-slate-400">Classify customers using our K-Means clustering model.</p>
+        <p className="text-zinc-400">Classify customers using our K-Means clustering model.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6">
-          <h2 className="text-xl font-semibold mb-6 text-accent-teal">Customer Features</h2>
+        <div className="card">
+          <h2 className="text-xl font-semibold mb-6 text-indigo-400">Customer Features</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Total Orders</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-1">Total Orders</label>
               <input 
                 type="number" 
                 name="total_orders"
                 value={formData.total_orders}
                 onChange={handleChange}
-                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                className="input-field"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Total Lifetime Spend ($)</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-1">Total Lifetime Spend ($)</label>
               <input 
                 type="number" 
                 name="total_spend"
                 value={formData.total_spend}
                 onChange={handleChange}
-                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                className="input-field"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Return Rate (0-1)</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-1">Return Rate (0-1)</label>
               <input 
                 type="number" 
                 step="0.01"
                 name="return_rate"
                 value={formData.return_rate}
                 onChange={handleChange}
-                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                className="input-field"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Customer Age</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-1">Customer Age</label>
               <input 
                 type="number" 
                 name="customer_age"
                 value={formData.customer_age}
                 onChange={handleChange}
-                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                className="input-field"
               />
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-1">Acquisition Cost ($)</label>
+              <label className="block text-sm font-medium text-zinc-300 mb-1">Acquisition Cost ($)</label>
               <input 
                 type="number" 
                 name="customer_acquisition_cost"
                 value={formData.customer_acquisition_cost}
                 onChange={handleChange}
-                className="w-full bg-navy-900 border border-navy-700 rounded-lg p-2.5 text-white focus:ring-accent-teal focus:border-accent-teal"
+                className="input-field"
               />
             </div>
 
             <button 
               type="submit" 
               disabled={loading}
-              className="w-full mt-6 bg-accent-teal text-navy-900 font-bold py-3 px-4 rounded-lg hover:bg-[#4ddbb8] transition-colors disabled:opacity-50"
+              className="w-full mt-6 btn-primary py-3"
             >
               {loading ? 'Clustering...' : 'Segment Customer'}
             </button>
           </form>
         </div>
 
-        <div className="bg-navy-800 border border-navy-700 rounded-xl p-6 flex flex-col justify-center items-center text-center">
+        <div className="card flex flex-col justify-center items-center text-center">
           {!result && !error && !loading && (
-             <div className="text-slate-500">
+             <div className="text-zinc-500">
                <Users className="w-16 h-16 mx-auto mb-4 opacity-50" />
                <p>Enter features to determine customer segment</p>
              </div>
@@ -144,7 +144,7 @@ export const CustomerSegmentation = () => {
           {loading && (
             <div className="animate-pulse flex flex-col items-center">
               <div className="w-12 h-12 border-4 border-accent-teal border-t-transparent rounded-full animate-spin mb-4"></div>
-              <p className="text-slate-300">Running K-Means Model...</p>
+              <p className="text-zinc-300">Running K-Means Model...</p>
             </div>
           )}
 
@@ -158,14 +158,14 @@ export const CustomerSegmentation = () => {
           {result && !loading && (
             <div className="w-full">
               <div className="p-6 rounded-xl border bg-accent-teal/10 border-accent-teal/50">
-                <Sparkles className="w-12 h-12 text-accent-teal mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-1 text-accent-teal">
+                <Sparkles className="w-12 h-12 text-indigo-400 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold mb-1 text-indigo-400">
                   Cluster {result.cluster_id}
                 </h3>
-                <p className="text-slate-300 mb-6">Profile Assigned</p>
+                <p className="text-zinc-300 mb-6">Profile Assigned</p>
                 
-                <div className="bg-navy-900 rounded-lg p-4">
-                  <p className="text-sm text-slate-400 mb-1">Customer Profile</p>
+                <div className="bg-zinc-950/50 rounded-lg p-4">
+                  <p className="text-sm text-zinc-400 mb-1">Customer Profile</p>
                   <p className="text-xl font-bold text-white">
                     {result.profile}
                   </p>

@@ -28,10 +28,10 @@ const navItems = [
 
 export const Sidebar = () => {
   return (
-    <aside className="w-64 bg-navy-800 min-h-screen border-r border-navy-700 flex flex-col">
-      <div className="p-6 border-b border-navy-700">
-        <h1 className="text-xl font-bold text-accent-teal flex items-center gap-2">
-          <Gem className="w-6 h-6" /> E-Comm Analytics
+    <aside className="w-64 bg-zinc-950/50 min-h-screen border-r border-zinc-800/50 flex flex-col backdrop-blur-xl">
+      <div className="p-6 border-b border-zinc-800/50">
+        <h1 className="text-xl font-bold text-zinc-100 flex items-center gap-2 tracking-tight">
+          <Gem className="w-6 h-6 text-indigo-400" /> E-Comm Analytics
         </h1>
       </div>
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
@@ -42,10 +42,10 @@ export const Sidebar = () => {
               key={item.path}
               to={item.path}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+                `flex items-center gap-3 px-3 py-2 rounded-xl transition-all duration-200 ${
                   isActive 
-                    ? 'bg-navy-700 text-accent-teal' 
-                    : 'text-slate-400 hover:bg-navy-700 hover:text-slate-200'
+                    ? 'bg-zinc-800/50 text-indigo-400 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]' 
+                    : 'text-zinc-500 hover:bg-zinc-900/50 hover:text-zinc-300'
                 }`
               }
             >
