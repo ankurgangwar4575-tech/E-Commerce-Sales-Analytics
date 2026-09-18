@@ -1,64 +1,297 @@
-# E-Commerce Return Risk Model
+# 🛍️ E-Commerce Sales Analytics & ML Platform
 
-This project builds a machine-learning model that predicts whether an e-commerce order is likely to be returned. The work is shared by two contributors and uses order, customer, order-item, and product data.
+An end-to-end e-commerce analytics platform combining exploratory analysis, leakage-aware machine learning, a FastAPI backend, and a React dashboard.
 
-## Project goal
+## 🎯 What this project does
 
-The first model will score each order at order placement as either likely to be returned or unlikely to be returned. The target is derived from `return_status` in the main order dataset.
+- Predicts the probability that an order will be returned.
+- Segments customers using behavioural and value-based features.
+- Detects high-value customers.
+- Forecasts future sales.
+- Predicts delivery-delay risk, likely return reason, customer rating, review sentiment, and customer segment.
+- Exposes trained models through FastAPI.
+- Provides an interactive React dashboard.
 
-## Data
+## 🧭 Architecture
 
-The approved source data is committed in `data/` so both contributors work from the same inputs.
+~~~text
+CSV sources
+   │
+   ├── validation and relationship checks
+   ├── customer feature engineering
+   ├── product/item feature engineering
+   └── one-row-per-order training table
+            │
+            ├── chronological model comparison
+            ├── final evaluation and export
+            └── versioned artifacts in models/
+                            │
+                   FastAPI backend
+                            │
+                   React + Vite dashboard
+~~~
 
-| File | Description | Key |
+## 🧰 Tech stack
+
+| Layer | Technologies | Purpose |
 | --- | --- | --- |
-| `customer_master.csv` | Customer demographics, segments, locations, and acquisition cost | `customer_id` |
-| `ecommerce_sales_customer_analytics_150k.csv` | Main order-level data and return label | `order_id`, `customer_id` |
-| `order_items.csv` | Products, quantities, prices, discounts, and margins per order item | `order_id`, `product_id` |
-| `product_catalog.csv` | Product, category, brand, supplier, and rating details | `product_id` |
-| `dataset_statistics.csv` | Dataset-level summary statistics | Reference only |
+| Data processing | Python, Pandas, NumPy | Loading, cleaning, joining, and transforming CSV data |
+| Exploratory analysis | Jupyter, Matplotlib, Seaborn | Data-quality checks, EDA, and model visualizations |
+| Machine learning | Scikit-learn, LightGBM, XGBoost, CatBoost | Classification, regression, clustering, and return-risk modelling |
+| Model persistence | Joblib, JSON | Saving models, metadata, thresholds, and forecast output |
+| Backend API | FastAPI, Pydantic, Uvicorn | Validated prediction endpoints and interactive API documentation |
+| Frontend | React, TypeScript, Vite | Interactive analytics and prediction dashboard |
+| UI styling | Tailwind CSS, Lucide React | Dashboard layout, styling, and icons |
+| Charts | Recharts, Matplotlib, Seaborn | Dashboard and notebook visualizations |
+| Testing | Pytest | Data, feature-engineering, pipeline, and prediction tests |
+| Development | Git, GitHub, VS Code/JupyterLab | Version control, collaboration, and development workflow |
 
-## Planned layout
+## 📁 Repository structure
 
-```text
-data/       Shared source CSV files
-src/        Reusable feature engineering, training, and evaluation code
-tests/      Automated checks for feature engineering and data joins
-notebooks/  Exploratory analysis only
-models/     Final versioned trained models and model metadata
-images/     README charts and diagrams
-```
+~~~text
+data/       Source CSV files, engineered features, processed datasets
+notebooks/  Guided EDA, feature engineering, training, and prediction workflow
+src/        Reusable data, feature, training, evaluation, and prediction code
+models/     Versioned model artifacts, metadata, and forecast output
+server/     FastAPI app, schemas, and model services
+client/     React + TypeScript + Vite dashboard
+tests/      Data, feature, pipeline, and prediction tests
+images/     EDA and model-evaluation visuals
+~~~
 
-## Team workflow
+## 🗃️ Data sources
 
-1. Create a branch for each task.
-2. Keep reusable logic in `src/`, not only in notebooks.
-3. Push code, approved source data, final model files, and model metadata to GitHub.
-4. Open a pull request before merging work into `main`.
-5. Do not commit secrets, local environments, temporary outputs, or experiment logs.
+| File | Purpose | Main key |
+| --- | --- | --- |
+| customer_master.csv | Customer demographics, locations, segment, acquisition cost | customer_id |
+| ecommerce_sales_customer_analytics_150k.csv | Order-level sales, customer, delivery, review, and return data | order_id, customer_id |
+| order_items.csv | Item quantities, prices, sales, cost, tax, shipping, and profit | order_id, product_id |
+| product_catalog.csv | Product category, subcategory, brand, supplier, price, cost, rating | product_id |
+| dataset_statistics.csv | Dataset-level reference statistics | — |
 
-Suggested task split:
+The final return-risk dataset contains one row per eligible order. Customer and product tables are joined through validated keys, and item rows are aggregated to order level.
 
-- Customer contributor: customer features from `customer_master.csv` and prior-order history.
-- Product contributor: item and product features from `order_items.csv` and `product_catalog.csv`.
-- Joint work: merge features at `order_id`, train, evaluate, and version the final model.
+## 🤖 Return-risk model
 
-## Modelling rules
+The target is:
 
-Use one row per `order_id` in the final training dataset. Split training, validation, and test data chronologically, rather than randomly.
+~~~python
+return_label = (return_status == "Returned").astype(int)
+~~~
 
-Do not use information that becomes available after an order outcome. Exclude `return_status`, `return_reason`, actual delivery fields, customer reviews, review sentiment, and post-order payment outcomes from the feature set.
+The chronological split is:
 
-## Setup
+| Period | Use |
+| --- | --- |
+| 2021–2024 | Model training |
+| January–June 2025 | Model comparison and threshold selection |
+| July–December 2025 | One final untouched test evaluation |
 
-Create and activate a virtual environment, then install dependencies:
+PR-AUC is the primary selection metric because returned orders are the minority class. ROC-AUC, precision, recall, F1-score, accuracy, and confusion matrices are also reported.
 
-```powershell
+### Final artifact
+
+The selected model is LightGBM, saved as return_risk_v1, with a decision threshold of 0.70.
+
+| Metric | Validation | Final test |
+| --- | ---: | ---: |
+| PR-AUC | 0.6264 | 0.8353 |
+| ROC-AUC | 0.9342 | 0.9696 |
+| Precision | 0.6048 | 0.7071 |
+| Recall | 0.6225 | 0.8142 |
+| F1-score | 0.6135 | 0.7569 |
+| Accuracy | — | 0.9595 |
+
+Saved files:
+
+~~~text
+models/return_risk_v1.joblib
+models/return_risk_v1_metadata.json
+~~~
+
+The model excludes post-outcome fields such as return status/reason, delivery outcomes, reviews, sentiment, payment status, loyalty points, estimated delivery days, and the discount-derived target proxies identified during data auditing. Customer history features use earlier orders only.
+
+## 📓 Notebook roadmap
+
+| Notebook | Purpose |
+| --- | --- |
+| 00_project_setup.ipynb | Shared paths, imports, and data availability |
+| 01_data_quality_and_relationships.ipynb | Schemas, missingness, duplicates, keys, and joins |
+| 02_order_and_customer_eda.ipynb | Order, customer, channel, geography, and return analysis |
+| 03_product_and_item_eda.ipynb | Product, item, category, brand, supplier, and rating analysis |
+| 04_customer_feature_engineering.ipynb | Leakage-safe prior customer history features |
+| 05_product_feature_engineering.ipynb | One product/item feature row per order |
+| 06_build_training_dataset.ipynb | Final order-level modelling table |
+| 07_baseline_model.ipynb | Logistic Regression baseline |
+| 08_tree_model_comparison.ipynb | LightGBM, XGBoost, and CatBoost comparison |
+| 09_final_evaluation_and_model_export.ipynb | Winner selection, final test, export, and metadata |
+| 10_prediction_demo.ipynb | Loading the saved artifact and generating predictions |
+
+The reusable equivalents are in src/; notebooks provide the guided workflow.
+
+## 🧠 Available model artifacts
+
+| Artifact | Capability |
+| --- | --- |
+| customer_segmentation_v1.joblib | KMeans customer clustering |
+| segmentation_scaler.joblib | Customer segmentation scaler |
+| return_risk_v1.joblib | Return probability and risk classification |
+| high_value_v1.joblib | High-value customer classification |
+| delay_classifier_v1.joblib | Delivery-delay risk classification |
+| rating_prediction_v1.joblib | Customer-rating regression |
+| segment_classifier_v1.joblib | Consumer/Premium/VIP/Business classification |
+| return_reason_classifier_v1.joblib | Multi-class return-reason prediction |
+| sentiment_classifier_v1.joblib | Review sentiment classification |
+| sales_forecast_v1.json | Historical data and generated sales forecast |
+
+Each model has a matching metadata JSON file containing its feature contract and, where available, evaluation information.
+
+## ⚙️ Setup
+
+### Python environment
+
+~~~powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 pip install -r requirements.txt
-```
+pip install fastapi uvicorn pydantic joblib
+~~~
 
-## First milestone
+server/requirements.txt contains older pinned pandas/scikit-learn versions. Avoid installing it over the root ML environment unless those versions are intentionally aligned with the serialized model artifact.
 
-Build the merged, leakage-safe training dataset with customer, order, item, and product features. Train a logistic-regression baseline before comparing it with a gradient-boosting model such as CatBoost.
+### Run the reusable ML pipeline
+
+~~~powershell
+python -m src.run_pipeline
+~~~
+
+This validates data, creates features, builds the training table, compares candidate models, evaluates the winner, and writes model artifacts.
+
+Individual stages:
+
+~~~powershell
+python -m src.validate_data
+python -m src.customer_features
+python -m src.product_features
+python -m src.build_training_data
+python -m src.train_models
+python -m src.evaluate_model
+python -m src.predict
+~~~
+
+### Run notebooks
+
+~~~powershell
+jupyter lab
+~~~
+
+Run notebooks 00–10 in order when rebuilding the documented analysis.
+
+### Start the backend
+
+~~~powershell
+python -m uvicorn server.main:app --reload --host 127.0.0.1 --port 8000
+~~~
+
+Interactive documentation is available at:
+
+~~~text
+http://127.0.0.1:8000/docs
+~~~
+
+### Start the dashboard
+
+~~~powershell
+cd client
+npm install
+npm run dev
+~~~
+
+The dashboard normally runs at http://localhost:5173. To change the backend URL, create client/.env:
+
+~~~text
+VITE_API_URL=http://127.0.0.1:8000
+~~~
+
+Frontend commands:
+
+~~~powershell
+npm run lint
+npm run build
+npm run preview
+~~~
+
+## 🔌 API endpoints
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| GET | / | API welcome message |
+| GET | /health | Backend and return-risk model status |
+| GET | /stats | Dataset statistics |
+| GET | /forecast | Saved sales forecast |
+| POST | /predict | Return-risk score |
+| POST | /segment | Customer clustering result |
+| POST | /high-value | High-value customer probability |
+| POST | /rating | Predicted customer rating |
+| POST | /predict-segment | Predicted customer segment |
+| POST | /predict-delay | Delivery-delay probability |
+| POST | /predict-return-reason | Likely return reason and probabilities |
+| POST | /predict-sentiment | Review sentiment and probabilities |
+
+The return-risk endpoint expects a features dictionary containing all 50 model-ready fields listed in models/return_risk_v1_metadata.json and returns:
+
+~~~json
+{
+  "risk_score": 0.78,
+  "is_high_risk": true
+}
+~~~
+
+## 🖥️ Dashboard modules
+
+- 📊 Dashboard overview
+- 🔁 Return prediction
+- 👥 Customer segmentation
+- 🎯 Segment classification
+- 🚚 Delivery-delay warning
+- ❓ Return-reason prediction
+- 💬 Review sentiment analysis
+- 💎 High-value customer detection
+- 📈 Sales forecasting
+- ⭐ Customer-rating prediction
+
+The client uses React, TypeScript, Vite, React Router, Recharts, Tailwind CSS, and Lucide icons.
+
+## 🧪 Testing
+
+~~~powershell
+python -m pytest -q
+~~~
+
+The tests cover raw-data loading, schema validation, joins, customer features, product features, training-data construction, and prediction behaviour.
+
+## 🔐 Production notes
+
+- Keep credentials, local environments, and temporary outputs out of Git.
+- Validate API payloads against the saved metadata feature contract.
+- Keep preprocessing and model versions together; serialized scikit-learn pipelines are sensitive to package-version changes.
+- Recalculate customer history using only information available before the scored order.
+- Treat auxiliary models according to their own feature contracts; some are descriptive or post-order analytics models rather than pre-order return-risk models.
+- Retrain and version the model when the schema, feature definitions, or business threshold changes.
+
+## 🚀 Future improvements
+
+- Add a feature-building endpoint so the dashboard can submit an order ID or raw order details instead of manually sending 50 engineered features.
+- Add authentication, request logging, rate limiting, and structured API errors.
+- Add model monitoring for drift, calibration, precision, recall, and return-rate changes.
+- Add CI for tests, frontend lint/build, and model-schema validation.
+- Add per-prediction explanations such as top contributing features.
+
+## 👥 Collaboration
+
+Keep exploratory work in notebooks/, reusable logic in src/, API logic in server/, and UI work in client/. Use focused branches and review changes before merging into main.
+
+## 📄 License
+
+Add a project license before public distribution.
