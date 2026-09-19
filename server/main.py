@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from pathlib import Path
-from server.schemas import PredictionRequest, PredictionResponse, SegmentationRequest, SegmentationResponse, HighValueRequest, HighValueResponse, RatingRequest, RatingResponse, SegmentClassifyRequest, SegmentClassifyResponse, ReturnReasonRequest, ReturnReasonResponse, SentimentRequest, SentimentResponse
+from server.schemas import PredictionRequest, PredictionResponse, SegmentationRequest, SegmentationResponse, HighValueRequest, HighValueResponse, RatingRequest, RatingResponse, SegmentClassifyRequest, SegmentClassifyResponse, ReturnReasonRequest, ReturnReasonResponse, SentimentRequest, SentimentResponse, LoyaltyRequest, LoyaltyResponse
 from server.services.prediction import PredictionService
 from server.services.segmentation import SegmentationService
 from server.services.high_value import HighValueService
@@ -188,8 +188,8 @@ def predict_sentiment(request: SentimentRequest):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Sentiment prediction failed: {str(e)}")
 
-@app.post("/predict-loyalty", response_model=schemas.LoyaltyResponse)
-def predict_loyalty(request: schemas.LoyaltyRequest):
+@app.post("/predict-loyalty", response_model=LoyaltyResponse)
+def predict_loyalty(request: LoyaltyRequest):
     if loyalty_service is None:
         raise HTTPException(status_code=503, detail="Loyalty service is not available")
     
