@@ -3,12 +3,16 @@ import { HelpCircle, Users, DollarSign, Truck, Percent } from 'lucide-react';
 import { API_URL } from '../config';
 
 export const ReturnReason = () => {
-  const [formData, setFormData] = useState({
-    customer_segment: 'Consumer',
-    shipping_method: 'Standard',
-    customer_age: 35,
-    gross_sales: 150,
-    discount_amount: 10
+  const [formData, setFormData] = useState(() => {
+    const segments = ['Consumer', 'Corporate', 'Home Office'];
+    const shipping = ['Standard', 'Express', 'Next Day', 'Same Day'];
+    return {
+      customer_segment: segments[Math.floor(Math.random() * segments.length)],
+      shipping_method: shipping[Math.floor(Math.random() * shipping.length)],
+      customer_age: Math.floor(Math.random() * 50) + 18,
+      gross_sales: parseFloat((Math.random() * 500 + 50).toFixed(2)),
+      discount_amount: parseFloat((Math.random() * 50).toFixed(2))
+    };
   });
 
   const [loading, setLoading] = useState(false);

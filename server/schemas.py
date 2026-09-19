@@ -61,16 +61,15 @@ class SegmentClassifyResponse(BaseModel):
     predicted_segment: str
     probabilities: list[SegmentProb]
 
-class DelayRequest(BaseModel):
-    shipping_method: str
-    warehouse: str
-    region: str
-    customer_country: str
-    shipping_cost: float
+class LoyaltyRequest(BaseModel):
+    customer_segment: str
+    payment_method: str
+    gross_sales: float
+    discount_amount: float
+    quantity: int
 
-class DelayResponse(BaseModel):
-    delay_probability: float
-    is_high_risk: bool
+class LoyaltyResponse(BaseModel):
+    predicted_points: float
 
 class ReturnReasonRequest(BaseModel):
     customer_segment: str

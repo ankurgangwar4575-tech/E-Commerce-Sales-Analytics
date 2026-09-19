@@ -3,13 +3,18 @@ import { MessageSquare, Package, Clock, RotateCcw, DollarSign, Percent, Smile, F
 import { API_URL } from '../config';
 
 export const ReviewSentiment = () => {
-  const [formData, setFormData] = useState({
-    order_status: 'Delivered',
-    return_status: 'Not Returned',
-    delivery_days: 3,
-    estimated_delivery_days: 4,
-    discount_amount: 15,
-    gross_sales: 120
+  const [formData, setFormData] = useState(() => {
+    const statuses = ['Delivered', 'Processing', 'Shipped', 'Cancelled'];
+    const returns = ['Not Returned', 'Returned'];
+    const delDays = Math.floor(Math.random() * 10) + 1;
+    return {
+      order_status: statuses[Math.floor(Math.random() * statuses.length)],
+      return_status: returns[Math.floor(Math.random() * returns.length)],
+      delivery_days: delDays,
+      estimated_delivery_days: delDays + Math.floor(Math.random() * 4) - 1,
+      discount_amount: parseFloat((Math.random() * 50).toFixed(2)),
+      gross_sales: parseFloat((Math.random() * 500 + 50).toFixed(2))
+    };
   });
 
   const [loading, setLoading] = useState(false);

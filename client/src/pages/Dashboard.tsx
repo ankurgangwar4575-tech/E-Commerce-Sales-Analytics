@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  RotateCcw, Users, Gem, TrendingUp, Star, DollarSign, Target, Truck, HelpCircle, MessageSquare,
+  RotateCcw, Users, Gem, TrendingUp, Star, DollarSign, Target, HelpCircle, MessageSquare, Award,
   DollarSign as RevenueIcon, ShoppingCart, Percent
 } from 'lucide-react';
 import {
@@ -19,7 +19,7 @@ const mlFeatures = [
   { path: '/return-prediction', title: 'Return Prediction', desc: 'Predict the exact probability of an order being returned.', icon: RotateCcw, active: true },
   { path: '/customer-segmentation', title: 'Customer Segmentation', desc: 'Use behavioral features to discover customer groups using KMeans.', icon: Users, active: true },
   { path: '/segment-classification', title: 'Segment Predictor', desc: 'Predict whether a customer is Consumer, Premium, VIP, or Business.', icon: Target, active: true },
-  { path: '/delivery-delay', title: 'Delivery Delay Warning', desc: 'Predict if an order will be delivered later than its estimated delivery date.', icon: Truck, active: true },
+  { path: '/loyalty-predictor', title: 'Loyalty Point Predictor', desc: 'Predict the number of loyalty points earned on a purchase.', icon: Award, active: true },
   { path: '/return-reason', title: 'Return Reason Predictor', desc: 'Predict the primary reason a customer might return an order.', icon: HelpCircle, active: true },
   { path: '/review-sentiment', title: 'Review Sentiment Analyzer', desc: 'Predict the sentiment of a customer\'s review based on their order experience.', icon: MessageSquare, active: true },
   { path: '/high-value-customer', title: 'High-Value Customer Detection', desc: 'Identify customers with higher historical business value.', icon: Gem, active: true },
@@ -27,7 +27,6 @@ const mlFeatures = [
   { path: '/rating-prediction', title: 'Customer Rating Prediction', desc: 'Explore which variables may help explain customer ratings.', icon: Star, active: true },
 ];
 
-// Mock data for the chart since the backend only provides aggregates right now
 const revenueData = [
   { name: 'Jan', revenue: 4000, returns: 240 },
   { name: 'Feb', revenue: 3000, returns: 139 },
@@ -57,7 +56,6 @@ export const Dashboard = () => {
         <p className="text-slate-400">High-level metrics and Machine Learning opportunities.</p>
       </div>
 
-      {/* Stats Row */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="card !p-5 relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -113,7 +111,6 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      {/* Chart Row */}
       <div className="card relative overflow-hidden">
         <div className="absolute right-0 top-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[80px] pointer-events-none"></div>
         <h3 className="text-lg font-semibold mb-6 text-slate-100 flex items-center gap-2">
@@ -138,7 +135,6 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      {/* ML Features Grid */}
       <div className="pt-4">
         <h2 className="text-2xl font-bold mb-6 tracking-tight text-white flex items-center gap-3">
           Predictive Analytics Modules

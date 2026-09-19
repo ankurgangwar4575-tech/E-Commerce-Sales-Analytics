@@ -1,0 +1,30 @@
+{
+    "features": [
+        "customer_segment",
+        "payment_method",
+        "gross_sales",
+        "discount_amount",
+        "quantity"
+    ],
+    "cat_features": [
+        "customer_segment",
+        "payment_method"
+    ],
+    "label_encoders": {
+        "customer_segment": {
+            "Business": 0,
+            "Consumer": 1,
+            "Premium": 2,
+            "VIP": 3
+        },
+        "payment_method": {
+            "Bank Transfer": 0,
+            "Buy Now Pay Later": 1,
+            "Cash on Delivery": 2,
+            "Credit Card": 3,
+            "Debit Card": 4,
+            "Digital Wallet": 5,
+            "PayPal": 6
+        }
+    }
+}

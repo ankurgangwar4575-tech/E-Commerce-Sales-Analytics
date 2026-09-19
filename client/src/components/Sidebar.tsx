@@ -7,10 +7,10 @@ import {
   Gem, 
   Star,
   Target,
-  Truck,
   HelpCircle,
   MessageSquare,
-  TrendingUp
+  TrendingUp,
+  Award
 } from 'lucide-react';
 
 const navItems = [
@@ -18,7 +18,7 @@ const navItems = [
   { path: '/return-prediction', label: 'Return Prediction', icon: RotateCcw },
   { path: '/customer-segmentation', label: 'Customer Segmentation', icon: Users },
   { path: '/segment-classification', label: 'Segment Classification', icon: Target },
-  { path: '/delivery-delay', label: 'Delivery Delay', icon: Truck },
+  { path: '/loyalty-predictor', label: 'Loyalty Points', icon: Award },
   { path: '/return-reason', label: 'Return Reason', icon: HelpCircle },
   { path: '/review-sentiment', label: 'Review Sentiment', icon: MessageSquare },
   { path: '/high-value-customer', label: 'High-Value Detection', icon: Gem },

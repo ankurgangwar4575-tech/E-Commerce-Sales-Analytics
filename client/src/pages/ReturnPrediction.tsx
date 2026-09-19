@@ -9,11 +9,14 @@ export const ReturnPrediction = () => {
 
   // We are creating a simplified form for demo purposes.
   // In a real scenario, this would capture all 50 features or fetch them based on an Order ID.
-  const [formData, setFormData] = useState({
-    customer_segment: 'Loyal',
-    order_amount: '150.00',
-    prior_return_rate: '0.1',
-    days_since_previous_order: '30',
+  const [formData, setFormData] = useState(() => {
+    const segments = ['Loyal', 'New', 'At Risk'];
+    return {
+      customer_segment: segments[Math.floor(Math.random() * segments.length)],
+      order_amount: (Math.random() * 500 + 50).toFixed(2),
+      prior_return_rate: (Math.random() * 0.5).toFixed(2),
+      days_since_previous_order: Math.floor(Math.random() * 90).toString(),
+    };
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {

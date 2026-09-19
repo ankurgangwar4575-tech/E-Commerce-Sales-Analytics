@@ -2,16 +2,16 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 from pathlib import Path
-from server.schemas import PredictionRequest, PredictionResponse, SegmentationRequest, SegmentationResponse, HighValueRequest, HighValueResponse, RatingRequest, RatingResponse, SegmentClassifyRequest, SegmentClassifyResponse, DelayRequest, DelayResponse, ReturnReasonRequest, ReturnReasonResponse, SentimentRequest, SentimentResponse
+from server.schemas import PredictionRequest, PredictionResponse, SegmentationRequest, SegmentationResponse, HighValueRequest, HighValueResponse, RatingRequest, RatingResponse, SegmentClassifyRequest, SegmentClassifyResponse, ReturnReasonRequest, ReturnReasonResponse, SentimentRequest, SentimentResponse
 from server.services.prediction import PredictionService
 from server.services.segmentation import SegmentationService
 from server.services.high_value import HighValueService
 from server.services.rating import RatingService
 from server.services.forecast import ForecastService
 from server.services.segment_classifier import SegmentClassifierService
-from server.services.delay import DelayService
 from server.services.return_reason import ReturnReasonService
 from server.services.sentiment import SentimentService
+from server.services.loyalty import LoyaltyPredictionService
 
 app = FastAPI(
     title="Return Risk Prediction API",
@@ -64,12 +64,6 @@ except Exception as e:
     segment_classifier_service = None
 
 try:
-    delay_service = DelayService()
-except Exception as e:
-    print(f"Warning: Failed to load delay service on startup. Error: {e}")
-    delay_service = None
-
-try:
     return_reason_service = ReturnReasonService()
 except Exception as e:
     print(f"Warning: Failed to load return reason service on startup. Error: {e}")
@@ -80,6 +74,12 @@ try:
 except Exception as e:
     print(f"Warning: Failed to load sentiment service on startup. Error: {e}")
     sentiment_service = None
+
+try:
+    loyalty_service = LoyaltyPredictionService()
+except Exception as e:
+    print(f"Warning: Failed to load loyalty service on startup. Error: {e}")
+    loyalty_service = None
 
 @app.get("/")
 def root():
@@ -168,16 +168,6 @@ def predict_segment(request: SegmentClassifyRequest):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Segment classification failed: {str(e)}")
 
-@app.post("/predict-delay", response_model=DelayResponse)
-def predict_delay(request: DelayRequest):
-    if delay_service is None:
-        raise HTTPException(status_code=503, detail="Delay service is not available")
-    
-    try:
-        return delay_service.predict(request.model_dump())
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Delay prediction failed: {str(e)}")
-
 @app.post("/predict-return-reason", response_model=ReturnReasonResponse)
 def predict_return_reason(request: ReturnReasonRequest):
     if return_reason_service is None:
@@ -197,3 +187,13 @@ def predict_sentiment(request: SentimentRequest):
         return sentiment_service.predict(request.model_dump())
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Sentiment prediction failed: {str(e)}")
+
+@app.post("/predict-loyalty", response_model=schemas.LoyaltyResponse)
+def predict_loyalty(request: schemas.LoyaltyRequest):
+    if loyalty_service is None:
+        raise HTTPException(status_code=503, detail="Loyalty service is not available")
+    
+    try:
+        return loyalty_service.predict(request.model_dump())
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Loyalty prediction failed: {str(e)}")
