@@ -175,9 +175,9 @@ export const HighValueDetection = () => {
           </form>
         </div>
 
-        <div className="card flex flex-col justify-center items-center text-center">
+        <div className="card flex flex-col items-center justify-center h-full">
           {!result && !error && !loading && (
-             <div className="text-zinc-500">
+             <div className="text-zinc-500 text-center flex flex-col items-center">
                <Gem className="w-16 h-16 mx-auto mb-4 opacity-50" />
                <p>Enter first-order features to predict LTV potential</p>
              </div>

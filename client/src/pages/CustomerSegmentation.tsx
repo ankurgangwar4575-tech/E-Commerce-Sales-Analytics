@@ -133,9 +133,9 @@ export const CustomerSegmentation = () => {
           </form>
         </div>
 
-        <div className="card flex flex-col justify-center items-center text-center">
+        <div className="card flex flex-col items-center justify-center h-full">
           {!result && !error && !loading && (
-             <div className="text-zinc-500">
+             <div className="text-zinc-500 text-center flex flex-col items-center">
                <Users className="w-16 h-16 mx-auto mb-4 opacity-50" />
                <p>Enter features to determine customer segment</p>
              </div>

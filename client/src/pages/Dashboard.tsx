@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  RotateCcw, Users, Gem, TrendingUp, Star, DollarSign, Target, HelpCircle, MessageSquare, Award,
-  DollarSign as RevenueIcon, ShoppingCart, Percent
+  RotateCcw, Users, Gem, TrendingUp, Star, Target, HelpCircle, MessageSquare, Award,
+  Banknote, PiggyBank, CreditCard, Activity
 } from 'lucide-react';
 import {
+  LineChart,
+  Line,
   BarChart,
   Bar,
   XAxis,
@@ -37,6 +39,12 @@ const revenueData = [
   { name: 'Jul', revenue: 3490, returns: 430 },
 ];
 
+const segmentData = [
+  { name: 'Consumer', sales: 45000, returns: 1200 },
+  { name: 'Corporate', sales: 32000, returns: 800 },
+  { name: 'Home Office', sales: 18000, returns: 450 },
+];
+
 export const Dashboard = () => {
   const [stats, setStats] = useState<any>(null);
 
@@ -52,8 +60,8 @@ export const Dashboard = () => {
       <div className="relative">
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-[60px] pointer-events-none"></div>
         <div className="absolute top-0 right-20 w-32 h-32 bg-indigo-500/10 rounded-full blur-[50px] pointer-events-none"></div>
-        <h1 className="text-4xl font-bold mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 drop-shadow-sm">Dashboard Overview</h1>
-        <p className="text-slate-400">High-level metrics and Machine Learning opportunities.</p>
+        <h1 className="text-4xl font-bold mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 drop-shadow-sm">E-Commerce Sales Analytics</h1>
+        <p className="text-slate-400 max-w-2xl mt-3 leading-relaxed">AI-powered insights, financial metrics, and predictive models for your platform.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -62,7 +70,7 @@ export const Dashboard = () => {
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div className="flex items-center gap-4 relative">
             <div className="p-3 bg-blue-500/10 text-blue-400 rounded-xl shadow-[inset_0_0_10px_rgba(59,130,246,0.2)]">
-              <RevenueIcon className="w-6 h-6" />
+              <Banknote className="w-6 h-6" />
             </div>
             <div>
               <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Total Revenue</p>
@@ -75,7 +83,7 @@ export const Dashboard = () => {
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-teal-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div className="flex items-center gap-4 relative">
             <div className="p-3 bg-teal-500/10 text-teal-400 rounded-xl shadow-[inset_0_0_10px_rgba(20,184,166,0.2)]">
-              <DollarSign className="w-6 h-6" />
+              <PiggyBank className="w-6 h-6" />
             </div>
             <div>
               <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Total Profit</p>
@@ -88,7 +96,7 @@ export const Dashboard = () => {
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div className="flex items-center gap-4 relative">
             <div className="p-3 bg-indigo-500/10 text-indigo-400 rounded-xl shadow-[inset_0_0_10px_rgba(99,102,241,0.2)]">
-              <ShoppingCart className="w-6 h-6" />
+              <CreditCard className="w-6 h-6" />
             </div>
             <div>
               <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Transactions</p>
@@ -101,7 +109,7 @@ export const Dashboard = () => {
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div className="flex items-center gap-4 relative">
             <div className="p-3 bg-purple-500/10 text-purple-400 rounded-xl shadow-[inset_0_0_10px_rgba(168,85,247,0.2)]">
-              <Percent className="w-6 h-6" />
+              <Activity className="w-6 h-6" />
             </div>
             <div>
               <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Return Rate</p>
@@ -111,27 +119,52 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      <div className="card relative overflow-hidden">
-        <div className="absolute right-0 top-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[80px] pointer-events-none"></div>
-        <h3 className="text-lg font-semibold mb-6 text-slate-100 flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-          Revenue vs Returns (YTD)
-        </h3>
-        <div className="h-72 w-full relative z-10">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={revenueData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} strokeOpacity={0.4} />
-              <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
-              <YAxis stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
-              <Tooltip 
-                contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', backdropFilter: 'blur(10px)', borderColor: '#334155', color: '#f8fafc', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgb(0 0 0 / 0.5)' }}
-                itemStyle={{ color: '#f8fafc' }}
-                cursor={{ fill: '#334155', opacity: 0.3 }}
-              />
-              <Bar dataKey="revenue" name="Revenue" fill="#3b82f6" radius={[6, 6, 0, 0]} />
-              <Bar dataKey="returns" name="Returns" fill="#8b5cf6" radius={[6, 6, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="card relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+          <h3 className="text-lg font-semibold mb-6 text-slate-100 flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
+            Revenue vs Returns (YTD)
+          </h3>
+          <div className="h-72 w-full relative z-10">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={revenueData} margin={{ top: 15, right: 30, left: 20, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} strokeOpacity={0.4} />
+                <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
+                <YAxis stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
+                <Tooltip 
+                  contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', backdropFilter: 'blur(10px)', borderColor: '#334155', color: '#f8fafc', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgb(0 0 0 / 0.5)' }}
+                  itemStyle={{ color: '#f8fafc' }}
+                  cursor={{ stroke: '#334155', strokeWidth: 1, strokeDasharray: '5 5' }}
+                />
+                <Line type="linear" dataKey="revenue" name="Revenue" stroke="#84cc16" strokeWidth={4} dot={{ r: 4, fill: '#84cc16', strokeWidth: 0 }} activeDot={{ r: 6, fill: '#bef264', strokeWidth: 0 }} />
+                <Line type="linear" dataKey="returns" name="Returns" stroke="#ef4444" strokeWidth={4} dot={{ r: 4, fill: '#ef4444', strokeWidth: 0 }} activeDot={{ r: 6, fill: '#fca5a5', strokeWidth: 0 }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="card relative overflow-hidden">
+          <div className="absolute right-0 top-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+          <h3 className="text-lg font-semibold mb-6 text-slate-100 flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.8)]"></div>
+            Sales by Segment
+          </h3>
+          <div className="h-72 w-full relative z-10">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={segmentData} margin={{ top: 15, right: 30, left: 20, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} strokeOpacity={0.4} />
+                <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
+                <YAxis stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
+                <Tooltip 
+                  contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', backdropFilter: 'blur(10px)', borderColor: '#334155', color: '#f8fafc', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgb(0 0 0 / 0.5)' }}
+                  itemStyle={{ color: '#f8fafc' }}
+                  cursor={{ fill: '#334155', opacity: 0.3 }}
+                />
+                <Bar dataKey="sales" name="Sales" fill="#8b5cf6" radius={[6, 6, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </div>
 
