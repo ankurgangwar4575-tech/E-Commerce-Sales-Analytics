@@ -8,7 +8,7 @@ An end-to-end e-commerce analytics platform combining exploratory analysis, leak
 - Segments customers using behavioural and value-based features.
 - Detects high-value customers.
 - Forecasts future sales.
-- Predicts delivery-delay risk, likely return reason, customer rating, review sentiment, and customer segment.
+- Predicts delivery-delay risk, loyalty points, likely return reason, customer rating, review sentiment, and customer segment.
 - Exposes trained models through FastAPI.
 - Provides an interactive React dashboard.
 
@@ -49,7 +49,7 @@ CSV sources
 ## 📁 Repository structure
 
 ~~~text
-data/       Source CSV files, engineered features, processed datasets
+data/       Source CSV files, engineered features, processed datasets, and Power BI exports
 notebooks/  Guided EDA, feature engineering, training, and prediction workflow
 src/        Reusable data, feature, training, evaluation, and prediction code
 models/     Versioned model artifacts, metadata, and forecast output
@@ -137,6 +137,7 @@ The reusable equivalents are in src/; notebooks provide the guided workflow.
 | segmentation_scaler.joblib | Customer segmentation scaler |
 | return_risk_v1.joblib | Return probability and risk classification |
 | high_value_v1.joblib | High-value customer classification |
+| loyalty_predictor_v1.joblib | Loyalty-points regression |
 | delay_classifier_v1.joblib | Delivery-delay risk classification |
 | rating_prediction_v1.joblib | Customer-rating regression |
 | segment_classifier_v1.joblib | Consumer/Premium/VIP/Business classification |
@@ -233,6 +234,7 @@ npm run preview
 | POST | /predict | Return-risk score |
 | POST | /segment | Customer clustering result |
 | POST | /high-value | High-value customer probability |
+| POST | /predict-loyalty | Predicted loyalty points |
 | POST | /rating | Predicted customer rating |
 | POST | /predict-segment | Predicted customer segment |
 | POST | /predict-delay | Delivery-delay probability |
@@ -262,6 +264,33 @@ The return-risk endpoint expects a features dictionary containing all 50 model-r
 - ⭐ Customer-rating prediction
 
 The client uses React, TypeScript, Vite, React Router, Recharts, Tailwind CSS, and Lucide icons.
+
+The dashboard includes return prediction, customer segmentation, segment classification,
+loyalty points, delivery-delay warnings, return-reason prediction, review sentiment,
+high-value customer detection, sales forecasting, and rating prediction.
+
+## 📊 Power BI prediction exports
+
+Generate the dashboard-ready CSV files with:
+
+~~~powershell
+python -m src.export_predictions
+~~~
+
+The command loads the saved artifacts from models/ and writes these files to data/predictions/:
+
+| File | Grain | Contents |
+| --- | --- | --- |
+| return_predictions.csv | One row per eligible order | Return probability, risk level, and actual outcome |
+| customer_segmentation.csv | One row per customer | Cluster, profile, spend, orders, and return rate |
+| segment_classification.csv | One row per order | Predicted customer segment and class probabilities |
+| loyalty_point_predictions.csv | One row per order | Predicted and actual loyalty points |
+| return_reason_predictions.csv | One row per order | Predicted reason, reason probabilities, and return flag |
+| review_sentiment_predictions.csv | One row per order with required inputs | Predicted sentiment and class probabilities |
+| high_value_predictions.csv | One row per customer | High-value probability and classification |
+| rating_predictions.csv | One row per order with required inputs | Predicted rating and prediction error |
+
+Sales forecasting is already exported as models/sales_forecast_v1.json because it is a date-level forecast rather than an order-level prediction table. Rating and sentiment exports contain fewer rows when the source record is missing a feature required by their saved models.
 
 ## 🧪 Testing
 
