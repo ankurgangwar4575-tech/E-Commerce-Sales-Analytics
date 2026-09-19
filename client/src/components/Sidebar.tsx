@@ -105,8 +105,8 @@ export const Sidebar = () => {
             <span className="font-bold text-white text-sm">AD</span>
           </div>
           <div className="flex-1">
-            <p className="text-sm font-medium text-slate-200">Admin User</p>
-            <p className="text-xs text-slate-500">Manager</p>
+            <p className="text-sm font-medium text-slate-200">Admin</p>
+            <p className="text-xs text-slate-500">User</p>
           </div>
         </div>
       </div>

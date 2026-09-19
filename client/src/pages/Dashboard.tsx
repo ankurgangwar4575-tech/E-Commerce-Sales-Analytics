@@ -57,13 +57,6 @@ export const Dashboard = () => {
 
   return (
     <div className="space-y-8 animate-in fade-in duration-700">
-      <div className="relative">
-        <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-[60px] pointer-events-none"></div>
-        <div className="absolute top-0 right-20 w-32 h-32 bg-indigo-500/10 rounded-full blur-[50px] pointer-events-none"></div>
-        <h1 className="text-4xl font-bold mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 drop-shadow-sm">E-Commerce Sales Analytics</h1>
-        <p className="text-slate-400 max-w-2xl mt-3 leading-relaxed">AI-powered insights, financial metrics, and predictive models for your platform.</p>
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="card !p-5 relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -100,7 +93,7 @@ export const Dashboard = () => {
             </div>
             <div>
               <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Transactions</p>
-              <p className="text-2xl font-bold tracking-tight text-white drop-shadow-md">{stats ? stats['Total Transactions'] : '...'}</p>
+              <p className="text-2xl font-bold tracking-tight text-white drop-shadow-md">{stats ? Number(stats['Total Transactions']).toLocaleString() : '...'}</p>
             </div>
           </div>
         </div>
