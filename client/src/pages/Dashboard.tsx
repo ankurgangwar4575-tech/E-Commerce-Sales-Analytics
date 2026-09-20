@@ -9,6 +9,8 @@ import {
   Line,
   BarChart,
   Bar,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -43,6 +45,24 @@ const segmentData = [
   { name: 'Consumer', sales: 45000, returns: 1200 },
   { name: 'Corporate', sales: 32000, returns: 800 },
   { name: 'Home Office', sales: 18000, returns: 450 },
+];
+
+const productData = [
+  { name: 'Laptops', sales: 1250 },
+  { name: 'Phones', sales: 2100 },
+  { name: 'Tablets', sales: 850 },
+  { name: 'Monitors', sales: 1400 },
+  { name: 'Audio', sales: 950 },
+];
+
+const trafficData = [
+  { name: 'Mon', users: 1200 },
+  { name: 'Tue', users: 1800 },
+  { name: 'Wed', users: 2400 },
+  { name: 'Thu', users: 2100 },
+  { name: 'Fri', users: 2800 },
+  { name: 'Sat', users: 3500 },
+  { name: 'Sun', users: 3100 },
 ];
 
 export const Dashboard = () => {
@@ -112,16 +132,16 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="card relative overflow-hidden">
           <div className="absolute right-0 top-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[80px] pointer-events-none"></div>
           <h3 className="text-lg font-semibold mb-6 text-slate-100 flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]"></div>
-            Revenue vs Returns (YTD)
+            Revenue vs Returns
           </h3>
           <div className="h-72 w-full relative z-10">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={revenueData} margin={{ top: 15, right: 30, left: 20, bottom: 5 }}>
+              <LineChart data={revenueData} margin={{ top: 15, right: 10, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} strokeOpacity={0.4} />
                 <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
                 <YAxis stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
@@ -130,31 +150,87 @@ export const Dashboard = () => {
                   itemStyle={{ color: '#f8fafc' }}
                   cursor={{ stroke: '#334155', strokeWidth: 1, strokeDasharray: '5 5' }}
                 />
-                <Line type="linear" dataKey="revenue" name="Revenue" stroke="#84cc16" strokeWidth={4} dot={{ r: 4, fill: '#84cc16', strokeWidth: 0 }} activeDot={{ r: 6, fill: '#bef264', strokeWidth: 0 }} />
-                <Line type="linear" dataKey="returns" name="Returns" stroke="#ef4444" strokeWidth={4} dot={{ r: 4, fill: '#ef4444', strokeWidth: 0 }} activeDot={{ r: 6, fill: '#fca5a5', strokeWidth: 0 }} />
+                <Line type="linear" dataKey="revenue" name="Revenue" stroke="#84cc16" strokeWidth={3} dot={{ r: 3, fill: '#84cc16', strokeWidth: 0 }} activeDot={{ r: 5, fill: '#bef264', strokeWidth: 0 }} />
+                <Line type="linear" dataKey="returns" name="Returns" stroke="#ef4444" strokeWidth={3} dot={{ r: 3, fill: '#ef4444', strokeWidth: 0 }} activeDot={{ r: 5, fill: '#fca5a5', strokeWidth: 0 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
 
+        <div className="flex flex-col gap-6">
+          <div className="card relative overflow-hidden flex-1">
+            <div className="absolute right-0 top-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-[40px] pointer-events-none"></div>
+            <h3 className="text-sm font-semibold mb-3 text-slate-100 flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.8)]"></div>
+              Sales by Segment
+            </h3>
+            <div className="h-28 w-full relative z-10">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={segmentData} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
+                  <YAxis tickFormatter={(value) => value >= 1000 ? `${value / 1000}k` : value} stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} width={35} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', backdropFilter: 'blur(10px)', borderColor: '#334155', color: '#f8fafc', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgb(0 0 0 / 0.5)' }}
+                    itemStyle={{ color: '#f8fafc' }}
+                  />
+                  <Area type="monotone" dataKey="sales" name="Sales" stroke="#8b5cf6" strokeWidth={2} fillOpacity={1} fill="url(#colorSales)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          <div className="card relative overflow-hidden flex-1">
+            <div className="absolute right-0 top-0 w-32 h-32 bg-amber-500/5 rounded-full blur-[40px] pointer-events-none"></div>
+            <h3 className="text-sm font-semibold mb-3 text-slate-100 flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)]"></div>
+              Weekly Traffic
+            </h3>
+            <div className="h-28 w-full relative z-10">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={trafficData} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#f59e0b" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
+                  <YAxis tickFormatter={(value) => value >= 1000 ? `${value / 1000}k` : value} stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} width={35} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', backdropFilter: 'blur(10px)', borderColor: '#334155', color: '#f8fafc', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgb(0 0 0 / 0.5)' }}
+                    itemStyle={{ color: '#f8fafc' }}
+                  />
+                  <Area type="monotone" dataKey="users" name="Users" stroke="#f59e0b" strokeWidth={2} fillOpacity={1} fill="url(#colorUsers)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+
         <div className="card relative overflow-hidden">
-          <div className="absolute right-0 top-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+          <div className="absolute right-0 top-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-[80px] pointer-events-none"></div>
           <h3 className="text-lg font-semibold mb-6 text-slate-100 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.8)]"></div>
-            Sales by Segment
+            <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div>
+            Top Categories
           </h3>
           <div className="h-72 w-full relative z-10">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={segmentData} margin={{ top: 15, right: 30, left: 20, bottom: 5 }}>
+              <BarChart data={productData} margin={{ top: 15, right: 10, left: 0, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} strokeOpacity={0.4} />
                 <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
-                <YAxis stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
+                <YAxis stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} width={35} />
                 <Tooltip 
                   contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', backdropFilter: 'blur(10px)', borderColor: '#334155', color: '#f8fafc', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgb(0 0 0 / 0.5)' }}
                   itemStyle={{ color: '#f8fafc' }}
                   cursor={{ fill: '#334155', opacity: 0.3 }}
                 />
-                <Bar dataKey="sales" name="Sales" fill="#8b5cf6" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="sales" name="Units" fill="#10b981" radius={[4, 4, 0, 0]} barSize={20} />
               </BarChart>
             </ResponsiveContainer>
           </div>
