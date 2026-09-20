@@ -10,7 +10,7 @@ An end-to-end e-commerce analytics platform combining exploratory analysis, leak
 
 ## 👥 Authors
 
-| Contributor | Profile / repository |
+| Contributor | Profile |
 | --- | --- |
 | **Dhairya Vishwakarma** | [GitHub profile](https://github.com/Dhairya-v72) |
 | **Ankur Gangwar** | [GitHub profile](https://github.com/ankurgangwar4575-tech) |
