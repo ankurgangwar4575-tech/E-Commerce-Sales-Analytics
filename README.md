@@ -9,7 +9,6 @@ An end-to-end e-commerce analytics platform combining exploratory analysis, leak
 | **Dhairya Vishwakarma** | [GitHub profile](https://github.com/Dhairya-v72) |
 | **Ankur Gangwar** | [GitHub profile](https://github.com/ankurgangwar4575-tech) · [Project repository](https://github.com/ankurgangwar4575-tech/E-Commerce-Sales-Analytics) |
 
-> Replace `YOUR_GITHUB_PROFILE_URL` with Dhairya Vishwakarma's GitHub profile URL.
 
 ## 🎯 What this project does
 
