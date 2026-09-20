@@ -5,8 +5,8 @@ An end-to-end e-commerce analytics platform combining exploratory analysis, leak
 ## 🔗 Project links
 
 | Resource | Link |
-| Live application |[Live-Application] (https://saless-analyticss.vercel.app )|
- 
+| --- | --- |
+| Live application | [Live-Application](https://saless-analyticss.vercel.app) |
 
 ## 👥 Authors
 
