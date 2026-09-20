@@ -2,13 +2,20 @@
 
 An end-to-end e-commerce analytics platform combining exploratory analysis, leakage-aware machine learning, a FastAPI backend, and a React dashboard.
 
+## 🔗 Project links
+
+| Resource | Link |
+| --- | --- |
+| GitHub repository | [E-Commerce-Sales-Analytics](https://github.com/ankurgangwar4575-tech/E-Commerce-Sales-Analytics) |
+| Live application |[Live-Application] https://saless-analyticss.vercel.app |
+ 
+
 ## 👥 Authors
 
 | Contributor | Profile / repository |
 | --- | --- |
 | **Dhairya Vishwakarma** | [GitHub profile](https://github.com/Dhairya-v72) |
-| **Ankur Gangwar** | [GitHub profile](https://github.com/ankurgangwar4575-tech) · [Project repository](https://github.com/ankurgangwar4575-tech/E-Commerce-Sales-Analytics) |
-
+| **Ankur Gangwar** | [GitHub profile](https://github.com/ankurgangwar4575-tech) |
 
 ## 🎯 What this project does
 
