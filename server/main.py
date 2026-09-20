@@ -4,7 +4,7 @@ import pandas as pd
 from pathlib import Path
 from server.schemas import PredictionRequest, PredictionResponse, SegmentationRequest, SegmentationResponse, HighValueRequest, HighValueResponse, RatingRequest, RatingResponse, SegmentClassifyRequest, SegmentClassifyResponse, ReturnReasonRequest, ReturnReasonResponse, SentimentRequest, SentimentResponse, LoyaltyRequest, LoyaltyResponse
 from server.services.prediction import PredictionService
-from server.services.segmentation import SegmentationService
+from server.services.segmentation import SegmentationService 
 from server.services.high_value import HighValueService
 from server.services.rating import RatingService
 from server.services.forecast import ForecastService
@@ -21,7 +21,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=["https://saless-analyticss.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
