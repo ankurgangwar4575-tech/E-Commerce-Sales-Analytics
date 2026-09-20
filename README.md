@@ -2,6 +2,21 @@
 
 An end-to-end e-commerce analytics platform combining exploratory analysis, leakage-aware machine learning, a FastAPI backend, and a React dashboard.
 
+## 🔗 Project links
+
+| Resource | Link |
+| --- | --- |
+| GitHub repository | [E-Commerce-Sales-Analytics](https://github.com/ankurgangwar4575-tech/E-Commerce-Sales-Analytics) |
+| Live application |[Live-Application] https://saless-analyticss.vercel.app |
+ 
+
+## 👥 Authors
+
+| Contributor | Profile / repository |
+| --- | --- |
+| **Dhairya Vishwakarma** | [GitHub profile](https://github.com/Dhairya-v72) |
+| **Ankur Gangwar** | [GitHub profile](https://github.com/ankurgangwar4575-tech) |
+
 ## 🎯 What this project does
 
 - Predicts the probability that an order will be returned.
@@ -11,6 +26,15 @@ An end-to-end e-commerce analytics platform combining exploratory analysis, leak
 - Predicts delivery-delay risk, loyalty points, likely return reason, customer rating, review sentiment, and customer segment.
 - Exposes trained models through FastAPI.
 - Provides an interactive React dashboard.
+
+## ✅ What has been achieved
+
+- Built a reproducible, chronological return-risk pipeline from raw CSV data through validation, leakage-safe feature engineering, model comparison, final evaluation, and model export.
+- Compared Logistic Regression, LightGBM, XGBoost, and CatBoost for return prediction; the versioned LightGBM artifact is the selected production candidate.
+- Delivered supporting analytics models for customer segmentation, segment classification, high-value customers, loyalty points, delivery delay, return reason, review sentiment, and rating prediction.
+- Published trained artifacts and metadata in `models/`, exposed predictions through FastAPI, and connected them to the React/Vite dashboard.
+- Created a Power BI report with executive, sales, product, customer, marketing, and operations/returns views.
+- Added `src/export_predictions.py` to generate eight dashboard-ready prediction CSVs under `data/predictions/`.
 
 ## 🧭 Architecture
 
@@ -55,6 +79,7 @@ src/        Reusable data, feature, training, evaluation, and prediction code
 models/     Versioned model artifacts, metadata, and forecast output
 server/     FastAPI app, schemas, and model services
 client/     React + TypeScript + Vite dashboard
+dashboard/  Power BI report, page screenshots, and dashboard documentation
 tests/      Data, feature, pipeline, and prediction tests
 images/     EDA and model-evaluation visuals
 ~~~
