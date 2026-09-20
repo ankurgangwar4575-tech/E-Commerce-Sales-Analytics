@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Star, Truck, Calendar, DollarSign, Percent } from 'lucide-react';
 import { API_URL } from '../config';
 
@@ -10,6 +10,16 @@ export const RatingPrediction = () => {
     shipping_cost: 5,
     gross_sales: 150
   });
+
+  useEffect(() => {
+    setFormData({
+      delivery_days: Math.floor(Math.random() * 10 + 1),
+      estimated_delivery_days: Math.floor(Math.random() * 10 + 2),
+      discount_amount: parseFloat((Math.random() * 50).toFixed(2)),
+      shipping_cost: parseFloat((Math.random() * 20).toFixed(2)),
+      gross_sales: parseFloat((Math.random() * 500 + 50).toFixed(2))
+    });
+  }, []);
 
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<number | null>(null);

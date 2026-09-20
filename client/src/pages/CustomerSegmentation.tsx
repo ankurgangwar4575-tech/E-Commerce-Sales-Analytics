@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Users, AlertCircle, Sparkles } from 'lucide-react';
 import { API_URL } from '../config';
 
@@ -14,6 +14,16 @@ export const CustomerSegmentation = () => {
     customer_age: '35',
     customer_acquisition_cost: '20.00'
   });
+
+  useEffect(() => {
+    setFormData({
+      total_orders: String(Math.floor(Math.random() * 20 + 1)),
+      total_spend: (Math.random() * 5000 + 100).toFixed(2),
+      return_rate: Math.random().toFixed(2),
+      customer_age: String(Math.floor(Math.random() * 52 + 18)),
+      customer_acquisition_cost: (Math.random() * 50 + 5).toFixed(2)
+    });
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Gem, AlertCircle, Trophy } from 'lucide-react';
 import { API_URL } from '../config';
 
@@ -16,6 +16,18 @@ export const HighValueDetection = () => {
     gender: 'F',
     first_order_channel: 'Online'
   });
+
+  useEffect(() => {
+    setFormData({
+      customer_age: String(Math.floor(Math.random() * 52 + 18)),
+      customer_acquisition_cost: (Math.random() * 50 + 5).toFixed(2),
+      first_order_value: (Math.random() * 200 + 20).toFixed(2),
+      first_order_discount: (Math.random() * 20).toFixed(2),
+      first_order_quantity: String(Math.floor(Math.random() * 5 + 1)),
+      gender: Math.random() > 0.5 ? 'M' : 'F',
+      first_order_channel: ['Online', 'In-Store', 'App'][Math.floor(Math.random() * 3)]
+    });
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
