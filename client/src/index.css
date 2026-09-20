@@ -54,7 +54,8 @@ h6 {
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-xl cursor-pointer hover:from-blue-500 hover:to-indigo-500 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-[0_0_20px_rgba(79, 70, 229, 0.4)] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100;
+    @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-xl cursor-pointer hover:from-blue-500 hover:to-indigo-500 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100;
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
   }
 }
 
