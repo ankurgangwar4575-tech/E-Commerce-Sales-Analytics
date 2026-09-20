@@ -22,7 +22,7 @@ class PredictionService:
 
         self.feature_columns = self.metadata["feature_columns"]
         self.categorical_columns = self.metadata.get("categorical_columns", [])
-        self.threshold = self.metadata.get("decision_threshold", 0.7)
+        self.threshold = 0.3 # Lowered threshold to see more High Risk categories in demo
 
     def predict(self, request: PredictionRequest) -> PredictionResponse:
         input_data = {col: request.features.get(col) for col in self.feature_columns}
