@@ -21,16 +21,16 @@ export const LoyaltyPredictor = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       const response = await fetch(`${API_URL}/predict-loyalty`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
-      
+
       if (!response.ok) throw new Error('Prediction failed');
-      
+
       const data = await response.json();
       setResult(data);
     } catch (error) {
@@ -63,10 +63,10 @@ export const LoyaltyPredictor = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <form onSubmit={handleSubmit} className="card space-y-6 flex flex-col relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-          
+
           <div className="space-y-4 relative z-10">
             <h3 className="text-xl font-semibold text-zinc-100 mb-4 tracking-tight">Cart & Customer Details</h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-zinc-400 mb-1">Customer Segment</label>
@@ -140,7 +140,7 @@ export const LoyaltyPredictor = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-zinc-400 mb-1">Item Quantity</label>
                 <div className="relative">
@@ -179,14 +179,14 @@ export const LoyaltyPredictor = () => {
             {result ? (
               <div className="w-full animate-in fade-in zoom-in duration-500">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                
+
                 <div className="text-center flex flex-col items-center relative z-10">
                   <div className="mb-4 p-6 bg-indigo-500/10 rounded-full text-indigo-400 shadow-[0_0_30px_rgba(99,102,241,0.2)]">
                     <Award className="w-16 h-16" />
                   </div>
                   <h3 className="text-xl font-medium text-zinc-400 mb-2">Predicted Loyalty Points</h3>
                   <div className="text-6xl font-bold tracking-tight text-white mb-2">
-                    {Math.round(result.predicted_points).toLocaleString()}
+                    {Math.round(result.predicted_points).toLocaleString('en-US')}
                   </div>
                   <p className="text-sm text-indigo-400/80 font-medium">Points Earned on this Order</p>
                 </div>

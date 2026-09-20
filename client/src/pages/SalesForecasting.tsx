@@ -13,7 +13,7 @@ export const SalesForecasting = () => {
       try {
         const response = await fetch(`${API_URL}/forecast`);
         if (!response.ok) throw new Error('Failed to fetch forecast data');
-        
+
         const result = await response.json();
         setData(result);
       } catch (err) {
@@ -55,11 +55,11 @@ export const SalesForecasting = () => {
     ...data.historical.map(d => ({ date: d.date, actual: d.actual_sales, forecast: null })),
     ...data.forecast.map(d => ({ date: d.date, actual: null, forecast: d.predicted_sales }))
   ];
-  
+
 
   chartData.forEach(d => {
     const dateObj = new Date(d.date);
-    d.displayDate = `${dateObj.getMonth()+1}/${dateObj.getDate()}`;
+    d.displayDate = `${dateObj.getMonth() + 1}/${dateObj.getDate()}`;
   });
 
   const formatCurrency = (value: number) => {
@@ -85,7 +85,7 @@ export const SalesForecasting = () => {
         <div className="card bg-gradient-to-br from-zinc-900/50 to-zinc-950/50 border-indigo-400/20">
           <h3 className="text-zinc-400 text-sm font-medium">Next 30 Days Projected Revenue</h3>
           <div className="text-3xl font-bold text-white mt-2">
-            ${totalProjected.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+            ${totalProjected.toLocaleString('en-US', { maximumFractionDigits: 0 })}
           </div>
         </div>
       </div>
@@ -95,55 +95,55 @@ export const SalesForecasting = () => {
           <AreaChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
             <defs>
               <linearGradient id="colorActual" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#4ade80" stopOpacity={0.3}/>
-                <stop offset="95%" stopColor="#4ade80" stopOpacity={0}/>
+                <stop offset="5%" stopColor="#4ade80" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#4ade80" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="colorForecast" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#2dd4bf" stopOpacity={0.3}/>
-                <stop offset="95%" stopColor="#2dd4bf" stopOpacity={0}/>
+                <stop offset="5%" stopColor="#2dd4bf" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#2dd4bf" stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-            <XAxis 
-              dataKey="displayDate" 
-              stroke="#64748b" 
-              tick={{fill: '#94a3b8'}}
+            <XAxis
+              dataKey="displayDate"
+              stroke="#64748b"
+              tick={{ fill: '#94a3b8' }}
               tickMargin={10}
             />
-            <YAxis 
-              stroke="#64748b" 
-              tick={{fill: '#94a3b8'}}
+            <YAxis
+              stroke="#64748b"
+              tick={{ fill: '#94a3b8' }}
               tickFormatter={formatCurrency}
               width={80}
             />
-            <Tooltip 
+            <Tooltip
               contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', color: '#f8fafc' }}
               itemStyle={{ color: '#f8fafc' }}
-              formatter={(value: any) => [`$${Number(value).toLocaleString(undefined, { maximumFractionDigits: 0 })}`, 'Revenue']}
+              formatter={(value: any) => [`$${Number(value).toLocaleString('en-US', { maximumFractionDigits: 0 })}`, 'Revenue']}
               labelStyle={{ color: '#94a3b8', marginBottom: '8px' }}
             />
-            
+
             <ReferenceLine x={data.historical[data.historical.length - 1].displayDate} stroke="#94a3b8" strokeDasharray="3 3" />
-            
-            <Area 
-              type="monotone" 
-              dataKey="actual" 
+
+            <Area
+              type="monotone"
+              dataKey="actual"
               name="Historical Sales"
-              stroke="#4ade80" 
+              stroke="#4ade80"
               strokeWidth={3}
-              fillOpacity={1} 
-              fill="url(#colorActual)" 
+              fillOpacity={1}
+              fill="url(#colorActual)"
               isAnimationActive={true}
             />
-            <Area 
-              type="monotone" 
-              dataKey="forecast" 
+            <Area
+              type="monotone"
+              dataKey="forecast"
               name="Forecasted Sales"
-              stroke="#2dd4bf" 
+              stroke="#2dd4bf"
               strokeWidth={3}
               strokeDasharray="5 5"
-              fillOpacity={1} 
-              fill="url(#colorForecast)" 
+              fillOpacity={1}
+              fill="url(#colorForecast)"
               isAnimationActive={true}
             />
           </AreaChart>

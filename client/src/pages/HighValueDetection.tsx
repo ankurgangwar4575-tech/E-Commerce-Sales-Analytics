@@ -82,12 +82,12 @@ export const HighValueDetection = () => {
         <div className="card">
           <h2 className="text-xl font-semibold mb-6 text-indigo-400">New Customer Data</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-zinc-300 mb-1">Age</label>
-                <input 
-                  type="number" 
+                <input
+                  type="number"
                   name="customer_age"
                   value={formData.customer_age}
                   onChange={handleChange}
@@ -96,7 +96,7 @@ export const HighValueDetection = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-zinc-300 mb-1">Gender</label>
-                <select 
+                <select
                   name="gender"
                   value={formData.gender}
                   onChange={handleChange}
@@ -111,8 +111,8 @@ export const HighValueDetection = () => {
 
             <div>
               <label className="block text-sm font-medium text-zinc-300 mb-1">Acquisition Cost ($)</label>
-              <input 
-                type="number" 
+              <input
+                type="number"
                 step="0.01"
                 name="customer_acquisition_cost"
                 value={formData.customer_acquisition_cost}
@@ -123,12 +123,12 @@ export const HighValueDetection = () => {
 
             <div className="pt-4 border-t border-zinc-800">
               <h3 className="text-sm font-bold text-zinc-400 mb-4 uppercase">First Order Details</h3>
-              
+
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-zinc-300 mb-1">Order Value ($)</label>
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     step="0.01"
                     name="first_order_value"
                     value={formData.first_order_value}
@@ -140,8 +140,8 @@ export const HighValueDetection = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-zinc-300 mb-1">Discount Given ($)</label>
-                    <input 
-                      type="number" 
+                    <input
+                      type="number"
                       step="0.01"
                       name="first_order_discount"
                       value={formData.first_order_discount}
@@ -151,8 +151,8 @@ export const HighValueDetection = () => {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-zinc-300 mb-1">Total Quantity</label>
-                    <input 
-                      type="number" 
+                    <input
+                      type="number"
                       name="first_order_quantity"
                       value={formData.first_order_quantity}
                       onChange={handleChange}
@@ -163,7 +163,7 @@ export const HighValueDetection = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-zinc-300 mb-1">Sales Channel</label>
-                  <select 
+                  <select
                     name="first_order_channel"
                     value={formData.first_order_channel}
                     onChange={handleChange}
@@ -177,8 +177,8 @@ export const HighValueDetection = () => {
               </div>
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={loading}
               className="w-full mt-6 btn-primary py-3"
             >
@@ -189,10 +189,10 @@ export const HighValueDetection = () => {
 
         <div className="card flex flex-col items-center justify-center h-full">
           {!result && !error && !loading && (
-             <div className="text-zinc-500 text-center flex flex-col items-center">
-               <Gem className="w-16 h-16 mx-auto mb-4 opacity-50" />
-               <p>Enter first-order features to predict LTV potential</p>
-             </div>
+            <div className="text-zinc-500 text-center flex flex-col items-center">
+              <Gem className="w-16 h-16 mx-auto mb-4 opacity-50" />
+              <p>Enter first-order features to predict LTV potential</p>
+            </div>
           )}
 
           {loading && (
@@ -217,7 +217,7 @@ export const HighValueDetection = () => {
                 ) : (
                   <Gem className="w-16 h-16 text-zinc-400 mx-auto mb-4" />
                 )}
-                
+
                 <h3 className={`text-2xl font-bold mb-1 ${result.is_high_value ? 'text-yellow-500' : 'text-zinc-300'}`}>
                   {result.is_high_value ? 'Likely VIP' : 'Standard LTV'}
                 </h3>
@@ -232,8 +232,8 @@ export const HighValueDetection = () => {
                   </span>
                 </div>
                 <div className="w-full bg-zinc-900/50 rounded-full h-3">
-                  <div 
-                    className="bg-accent-teal h-3 rounded-full transition-all duration-1000" 
+                  <div
+                    className="bg-accent-teal h-3 rounded-full transition-all duration-1000"
                     style={{ width: `${result.high_value_probability * 100}%` }}
                   ></div>
                 </div>

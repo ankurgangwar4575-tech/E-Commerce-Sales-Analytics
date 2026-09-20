@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
+import {
   RotateCcw, Users, Gem, TrendingUp, Star, Target, HelpCircle, MessageSquare, Award,
   Banknote, PiggyBank, CreditCard, Activity
 } from 'lucide-react';
@@ -113,7 +113,7 @@ export const Dashboard = () => {
             </div>
             <div>
               <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">Transactions</p>
-              <p className="text-2xl font-bold tracking-tight text-white drop-shadow-md">{stats ? Number(stats['Total Transactions']).toLocaleString() : '...'}</p>
+              <p className="text-2xl font-bold tracking-tight text-white drop-shadow-md">{stats ? Number(stats['Total Transactions']).toLocaleString('en-US') : '...'}</p>
             </div>
           </div>
         </div>
@@ -145,7 +145,7 @@ export const Dashboard = () => {
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} strokeOpacity={0.4} />
                 <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
                 <YAxis stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
-                <Tooltip 
+                <Tooltip
                   contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', backdropFilter: 'blur(10px)', borderColor: '#334155', color: '#f8fafc', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgb(0 0 0 / 0.5)' }}
                   itemStyle={{ color: '#f8fafc' }}
                   cursor={{ stroke: '#334155', strokeWidth: 1, strokeDasharray: '5 5' }}
@@ -169,13 +169,13 @@ export const Dashboard = () => {
                 <AreaChart data={segmentData} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
                   <defs>
                     <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
                   <YAxis tickFormatter={(value) => value >= 1000 ? `${value / 1000}k` : value} stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} width={35} />
-                  <Tooltip 
+                  <Tooltip
                     contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', backdropFilter: 'blur(10px)', borderColor: '#334155', color: '#f8fafc', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgb(0 0 0 / 0.5)' }}
                     itemStyle={{ color: '#f8fafc' }}
                   />
@@ -196,13 +196,13 @@ export const Dashboard = () => {
                 <AreaChart data={trafficData} margin={{ top: 5, right: 10, left: 0, bottom: 0 }}>
                   <defs>
                     <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#f59e0b" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} />
                   <YAxis tickFormatter={(value) => value >= 1000 ? `${value / 1000}k` : value} stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 10, fill: '#94a3b8' }} width={35} />
-                  <Tooltip 
+                  <Tooltip
                     contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', backdropFilter: 'blur(10px)', borderColor: '#334155', color: '#f8fafc', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgb(0 0 0 / 0.5)' }}
                     itemStyle={{ color: '#f8fafc' }}
                   />
@@ -225,7 +225,7 @@ export const Dashboard = () => {
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} strokeOpacity={0.4} />
                 <XAxis dataKey="name" stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} />
                 <YAxis stroke="#64748b" tickLine={false} axisLine={false} tick={{ fontSize: 12, fill: '#94a3b8' }} width={35} />
-                <Tooltip 
+                <Tooltip
                   contentStyle={{ backgroundColor: 'rgba(15, 23, 42, 0.9)', backdropFilter: 'blur(10px)', borderColor: '#334155', color: '#f8fafc', borderRadius: '12px', boxShadow: '0 10px 25px -5px rgb(0 0 0 / 0.5)' }}
                   itemStyle={{ color: '#f8fafc' }}
                   cursor={{ fill: '#334155', opacity: 0.3 }}
@@ -246,8 +246,8 @@ export const Dashboard = () => {
           {mlFeatures.map((feature, idx) => {
             const Icon = feature.icon;
             return (
-              <Link 
-                key={idx} 
+              <Link
+                key={idx}
                 to={feature.path}
                 className="card group flex flex-col h-full hover:border-blue-500/40 relative overflow-hidden transition-all duration-300 transform hover:-translate-y-1"
               >
