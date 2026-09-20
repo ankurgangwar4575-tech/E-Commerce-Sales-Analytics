@@ -1,4 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { API_URL } from './config';
 import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './pages/Dashboard';
 import { ReturnPrediction } from './pages/ReturnPrediction';
@@ -14,6 +16,33 @@ import { ReviewSentiment } from './pages/ReviewSentiment';
 function App() {
   const location = useLocation();
   const isDashboard = location.pathname === '/';
+  const [showWarning, setShowWarning] = useState(true);
+
+  useEffect(() => {
+    if (!showWarning) return;
+    
+    let interval: ReturnType<typeof setInterval>;
+    
+    const checkServerStatus = async () => {
+      try {
+        const response = await fetch(`${API_URL}/health`);
+        if (response.ok) {
+          setShowWarning(false);
+          if (interval) clearInterval(interval);
+        }
+      } catch (err) {
+        // Still waking up
+      }
+    };
+
+    checkServerStatus(); // Initial check
+    
+    interval = setInterval(() => {
+      checkServerStatus();
+    }, 5000); // Check every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [showWarning]);
 
   return (
     <div className="relative min-h-screen bg-slate-950 text-slate-300 font-sans selection:bg-blue-500/30 overflow-x-hidden">
@@ -29,6 +58,19 @@ function App() {
         <Sidebar />
         <main className="flex-1 p-8 pt-24 lg:pt-8 lg:pl-24 overflow-y-auto">
           <div className="relative mb-8 text-center flex flex-col items-center">
+            {showWarning && (
+              <div className="bg-amber-500/10 border border-amber-500/20 text-amber-400 px-4 py-3 rounded-xl mb-6 flex items-start sm:items-center justify-between w-full max-w-2xl text-sm relative z-20 shadow-lg shadow-amber-500/5">
+                <div className="flex items-start sm:items-center gap-3">
+                  <span className="text-xl">⚠️</span>
+                  <div className="text-left leading-relaxed">
+                    <strong>Notice:</strong> The backend is hosted on a free Render tier. It may take up to <strong>50 seconds</strong> to wake up if it has been inactive. Please be patient on your first prediction!
+                  </div>
+                </div>
+                <button onClick={() => setShowWarning(false)} className="text-amber-500/60 hover:text-amber-400 transition-colors ml-4 p-1 cursor-pointer">
+                  ✕
+                </button>
+              </div>
+            )}
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-[60px] pointer-events-none"></div>
             <div className="absolute top-0 right-20 w-32 h-32 bg-indigo-500/10 rounded-full blur-[50px] pointer-events-none"></div>
             <h1 className="text-4xl font-bold mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-sky-300 drop-shadow-sm">E-Commerce Growth Analytics</h1>
