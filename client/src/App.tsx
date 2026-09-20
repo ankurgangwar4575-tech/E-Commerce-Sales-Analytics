@@ -31,7 +31,7 @@ function App() {
           <div className="relative mb-8 text-center flex flex-col items-center">
             <div className="absolute -top-10 -left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-[60px] pointer-events-none"></div>
             <div className="absolute top-0 right-20 w-32 h-32 bg-indigo-500/10 rounded-full blur-[50px] pointer-events-none"></div>
-            <h1 className="text-4xl font-bold mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-sky-300 drop-shadow-sm">Next Gen E-Commerce Intelligence</h1>
+            <h1 className="text-4xl font-bold mb-2 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-sky-300 drop-shadow-sm">E-Commerce Growth Analytics</h1>
             {isDashboard && (
               <p className="text-slate-400 max-w-2xl mt-3 leading-relaxed">Real-time machine learning predictions, sales forecasting, and customer behavior analytics</p>
             )}
